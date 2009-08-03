@@ -16,27 +16,40 @@ using T4MVC;
 
 [CompilerGenerated]
 public static class MVC {
-    public static SimpleBlog.Web.Controllers.HomeController Home = new T4MVC_HomeController();
+    public static SimpleBlog.Web.Controllers.ArticlesController Articles = new T4MVC_ArticlesController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
 
 namespace SimpleBlog.Web.Controllers {
-    public partial class HomeController {
-
-        public HomeController() { }
+    public partial class ArticlesController {
 
         [CompilerGenerated]
-        protected HomeController(_Dummy d) { }
+        protected ArticlesController(_Dummy d) { }
 
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
             var callInfo = (IT4MVCActionResult)result;
             return RedirectToRoute(callInfo.RouteValues);
         }
 
+        [NonAction]
+        public ActionResult List() {
+            return new T4MVC_ActionResult(Name, Actions.List);
+        }
+
+        [NonAction]
+        public ActionResult Details() {
+            return new T4MVC_ActionResult(Name, Actions.Details);
+        }
+
+        [NonAction]
+        public ActionResult Edit() {
+            return new T4MVC_ActionResult(Name, Actions.Edit);
+        }
+
 
         [CompilerGenerated]
-        public readonly string Name = "Home";
+        public readonly string Name = "Articles";
 
         static readonly _Actions s_actions = new _Actions();
         [CompilerGenerated]
@@ -44,6 +57,10 @@ namespace SimpleBlog.Web.Controllers {
         [CompilerGenerated]
         public class _Actions {
             public readonly string Index = "Index";
+            public readonly string List = "List";
+            public readonly string Details = "Details";
+            public readonly string Create = "Create";
+            public readonly string Edit = "Edit";
         }
 
         static readonly _Views s_views = new _Views();
@@ -51,7 +68,9 @@ namespace SimpleBlog.Web.Controllers {
         public _Views Views { get { return s_views; } }
         [CompilerGenerated]
         public class _Views {
-            public readonly string Index = "Index";
+            public readonly string Create = "Create";
+            public readonly string Details = "Details";
+            public readonly string List = "List";
         }
     }
 }
@@ -71,11 +90,46 @@ namespace T4MVC {
 
 namespace T4MVC {
     [CompilerGenerated]
-    public class T4MVC_HomeController: SimpleBlog.Web.Controllers.HomeController {
-        public T4MVC_HomeController() : base(_Dummy.Instance) { }
+    public class T4MVC_ArticlesController: SimpleBlog.Web.Controllers.ArticlesController {
+        public T4MVC_ArticlesController() : base(_Dummy.Instance) { }
 
         public override ActionResult Index() {
-            var callInfo = new T4MVC_ActionResult("Home", Actions.Index);
+            var callInfo = new T4MVC_ActionResult("Articles", Actions.Index);
+            return callInfo;
+        }
+
+        public override ActionResult List(int page) {
+            var callInfo = new T4MVC_ActionResult("Articles", Actions.List);
+            callInfo.RouteValues.Add("page", page);
+            return callInfo;
+        }
+
+        public override ActionResult Details(int id) {
+            var callInfo = new T4MVC_ActionResult("Articles", Actions.Details);
+            callInfo.RouteValues.Add("id", id);
+            return callInfo;
+        }
+
+        public override ActionResult Create() {
+            var callInfo = new T4MVC_ActionResult("Articles", Actions.Create);
+            return callInfo;
+        }
+
+        public override ActionResult Create(SimpleBlog.Web.Models.Article article) {
+            var callInfo = new T4MVC_ActionResult("Articles", Actions.Create);
+            callInfo.RouteValues.Add("article", article);
+            return callInfo;
+        }
+
+        public override ActionResult Edit(int id) {
+            var callInfo = new T4MVC_ActionResult("Articles", Actions.Edit);
+            callInfo.RouteValues.Add("id", id);
+            return callInfo;
+        }
+
+        public override ActionResult Edit(SimpleBlog.Web.Models.Article article) {
+            var callInfo = new T4MVC_ActionResult("Articles", Actions.Edit);
+            callInfo.RouteValues.Add("article", article);
             return callInfo;
         }
 

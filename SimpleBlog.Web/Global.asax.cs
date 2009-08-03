@@ -4,12 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using OpenEntity.Mapping;
 
 namespace SimpleBlog.Web
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : System.Web.HttpApplication
     {
         public static void RegisterRoutes(RouteCollection routes)
@@ -17,16 +15,28 @@ namespace SimpleBlog.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Default",                                              // Route name
-                "{controller}/{action}/{id}",                           // URL with parameters
-                new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
+                string.Empty,
+                "articles/list/{page}",
+                new { controller = MVC.Articles.Name, action = MVC.Articles.Actions.List, page = 0 }
+                );
+
+            routes.MapRoute(
+                "Default",
+                "{controller}/{action}/{id}",
+                new { controller = MVC.Articles.Name, action = MVC.Articles.Actions.Index, id = "" }
             );
 
+        }
+
+        public static void InitializeDataAccess()
+        {
+            MappingConfig.AddAssembly(typeof(MvcApplication).Assembly);
         }
 
         protected void Application_Start()
         {
             RegisterRoutes(RouteTable.Routes);
+            InitializeDataAccess();
         }
     }
 }
