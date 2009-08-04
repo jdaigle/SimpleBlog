@@ -4,33 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Details</title>
+    <title>Details - <%= Model.Title %></title>
 </head>
 <body>
-    <fieldset>
-        <legend>Fields</legend>
-        <p>
-            Id:
-            <%= Html.Encode(Model.Id) %>
-        </p>
-        <p>
-            Title:
-            <%= Html.Encode(Model.Title) %>
-        </p>
-        <p>
-            Content:
-            <%= Html.Encode(Model.Content) %>
-        </p>
-        <p>
-            ShowOn:
-            <%= Html.Encode(String.Format("{0:g}", Model.ShowOn)) %>
-        </p>
-    </fieldset>
+    <h1><%= Model.Title %></h1>
+    <h2><%= Model.ShowOn.ToShortDateString() %></h2>
     <p>
-        <%=Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) %> |
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%= Model.Content %>
     </p>
-
+    <p>
+        <%= Html.ActionLink("Back to List", MVC.Articles.List()) %>
+    </p>
 </body>
 </html>
 

@@ -200,193 +200,12 @@
             Initializes the schema.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:OpenEntity.Repository.IRepository`1.Create" -->
-        <member name="M:OpenEntity.Repository.IRepository`1.Reload(`0)">
-            <summary>
-            Fetches an entity from the database into the passed in IEntity object using a primary key filter. The primary key fields of
-            the entity passed in have to have the primary key values. (Example: CustomerID has to have a value, when you want to fetch a CustomerEntity
-            from the persistent storage into the passed in object)
-            </summary>
-            <param name="entityToFetch">The entity object in which the fetched entity data will be stored. The primary key fields have to have a value.</param>
-            <remarks>
-            Will use a current transaction if a transaction is in progress, so MVCC or other concurrency scheme used by the database can be
-            utilized
-            </remarks>
-            <returns>true if the Fetch was succesful, false otherwise</returns>
-        </member>
-        <member name="M:OpenEntity.Repository.IRepository`1.Save(`0)">
-            <summary>
-            Saves the passed in entity to the database. Will <i>not</i> refetch the entity after this save.
-            The entity will stay out-of-sync. If the entity is new, it will be inserted, if the entity is existent, the changed
-            entity fields will be changed in the database.
-            </summary>
-            <param name="entityToSave">The entity to save</param>
-            <returns>true if the save was succesful, false otherwise.</returns>
-            <remarks>Will use a current transaction if a transaction is in progress</remarks>
-        </member>
-        <member name="M:OpenEntity.Repository.IRepository`1.Save(`0,System.Boolean)">
-            <summary>
-            Saves the passed in entity to the database. If the entity is new, it will be inserted, if the entity is existent, the changed
-            entity fields will be changed in the database.
-            </summary>
-            <param name="entityToSave">The entity to save</param>
-            <param name="refetchAfterSave">When true, it will refetch the entity from the persistent storage so it will be up-to-date
-            after the save action.</param>
-            <returns>true if the save was succesful, false otherwise.</returns>
-            <remarks>Will use a current transaction if a transaction is in progress</remarks>
-        </member>
-        <member name="M:OpenEntity.Repository.IRepository`1.Delete(`0)">
-            <summary>
-            Deletes the specified entity from the database. The entity is not usable after this call, the state is set to OutOfSync.
-            Will use the current transaction if a transaction is in progress.
-            </summary>
-            <param name="entityToDelete">The entity instance to delete from the database</param>
-            <returns>true if the delete was succesful, otherwise false.</returns>
-        </member>
-        <member name="M:OpenEntity.Repository.IRepository`1.Fetch(OpenEntity.Query.IPredicateExpression)">
-            <summary>
-            Fetches a new entity using the query filter passed in.
-            </summary>
-            <param name="queryPredicate">The constraint to use when fetching the entity.</param>
-            <returns>The new entity fetched.</returns>
-        </member>
-        <member name="M:OpenEntity.Repository.IRepository`1.Fetch(OpenEntity.Query.IPredicateExpression,OpenEntity.Joins.JoinSet)">
-            <summary>
-            Fetches a new entity using the query filter passed in.
-            </summary>
-            <param name="queryPredicate">The constraint to use when fetching the entity.</param>
-            <param name="joinSet">A set of joins used to join this entity to other entities. Can be null.</param>
-            <returns>The new entity fetched.</returns>
-        </member>
-        <member name="M:OpenEntity.Repository.IRepository`1.FetchAll(OpenEntity.Query.IPredicateExpression)">
-            <summary>
-            Fetches one or more entities which match the filter information in the query predicate into a typed collection.
-            This overload returns all found entities and doesn't apply sorting
-            </summary>
-            <param name="queryPredicate">Filter information for retrieving the entities. If null, all entities are returned of the type specified.</param>
-        </member>
-        <member name="M:OpenEntity.Repository.IRepository`1.FetchAll(OpenEntity.Query.IPredicateExpression,OpenEntity.Joins.JoinSet)">
-            <summary>   
-            Fetches one or more entities which match the filter information in the query predicate into a typed Collection.
-            This overload returns all found entities and doesn't apply sorting
-            </summary>
-            <param name="queryPredicate">Filter information for retrieving the entities. If null, all entities are returned of the type specified.</param>
-            <param name="joinSet">A set of joins used to join this entity to other entities. Can be null.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Repository.IRepository`1.FetchAll(OpenEntity.Query.IPredicateExpression,OpenEntity.Joins.JoinSet,System.Int32)">
-            <summary>
-            Fetches one or more entities which match the filter information in the query predicate into a typed Collection.
-            This overload returns all found entities and doesn't apply sorting
-            </summary>
-            <param name="queryPredicate">Filter information for retrieving the entities. If null, all entities are returned of the type specified.</param>
-            <param name="joinSet">A set of joins used to join this entity to other entities. Can be null.</param>
-            <param name="maxNumberOfItemsToReturn">A limit to the number of items to return from the repository.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Repository.IRepository`1.FetchScalar(OpenEntity.Schema.IColumn,OpenEntity.Repository.AggregateFunction)">
-            <summary>
-            Gets a scalar value, calculated with the aggregate specified. The field specified is the field the aggregate is
-            applied on.
-            </summary>
-            <param name="field">The field the aggregate is applied on.</param>
-            <param name="aggregateFunction">The aggregate function to calculate.</param>
-            <returns>
-            The numeric result of the aggregate function.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.Repository.IRepository`1.FetchScalar(OpenEntity.Schema.IColumn,OpenEntity.Repository.AggregateFunction,OpenEntity.Query.IPredicateExpression)">
-            <summary>
-            Gets a scalar value, calculated with the aggregate specified. The field specified is the field the aggregate is
-            applied on.
-            </summary>
-            <param name="field">The field the aggregate is applied on.</param>
-            <param name="aggregateFunction">The aggregate function to calculate.</param>
-            <param name="queryPredicate">The query predicate to apply to retrieve the scalar.</param>
-            <returns>
-            The numeric result of the aggregate function.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.Repository.IRepository`1.FetchScalar(OpenEntity.Schema.IColumn,OpenEntity.Repository.AggregateFunction,OpenEntity.Query.IPredicateExpression,OpenEntity.Joins.JoinSet)">
-            <summary>
-            Gets a scalar value, calculated with the aggregate specified. The field specified is the field the aggregate is
-            applied on.
-            </summary>
-            <param name="field">The field the aggregate is applied on.</param>
-            <param name="aggregateFunction">The aggregate function to calculate.</param>
-            <param name="queryPredicate">The query predicate to apply to retrieve the scalar.</param>
-            <param name="joinSet">A set of joins used to join this entity to other entities. Can be null.</param>
-            <returns>
-            The numeric result of the aggregate function.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.Entities.ValueTypeMismatchException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.ValueTypeMismatchException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:OpenEntity.Entities.ValueTypeMismatchException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.ValueTypeMismatchException"/> class.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Entities.ValueTypeMismatchException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.ValueTypeMismatchException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="innerException">The inner exception.</param>
-        </member>
-        <member name="M:OpenEntity.Entities.ValueTypeMismatchException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.ValueTypeMismatchException"/> class.
-            </summary>
-            <param name="info">The object that holds the information to deserialize.</param>
-            <param name="context">Contextual information about the source or destination.</param>
-            <exception cref="T:System.InvalidOperationException">
-            The current type is not a <see cref="T:System.Configuration.ConfigurationException"/> or a <see cref="T:System.Configuration.ConfigurationErrorsException"/>.
-            </exception>
-        </member>
         <member name="M:OpenEntity.CodeDom.ProxyFactory.GetProxyClass(System.Type)">
             <summary>
             Gets the proxy class for the specific target class type.
             </summary>
             <param name="targetClass">The target class.</param>
             <returns></returns>
-        </member>
-        <member name="T:OpenEntity.SchemaException">
-            <summary>
-            An exception that has occured due to a schema level issue
-            </summary>
-        </member>
-        <member name="M:OpenEntity.SchemaException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.SchemaException"/> class.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.SchemaException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.SchemaException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:OpenEntity.SchemaException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.SchemaException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="innerException">The inner exception.</param>
-        </member>
-        <member name="M:OpenEntity.SchemaException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.SchemaException"/> class.
-            </summary>
-            <param name="info">The object that holds the information to deserialize.</param>
-            <param name="context">Contextual information about the source or destination.</param>
-            <exception cref="T:System.InvalidOperationException">
-            The current type is not a <see cref="T:System.Configuration.ConfigurationException"/> or a <see cref="T:System.Configuration.ConfigurationErrorsException"/>.
-            </exception>
         </member>
         <member name="M:OpenEntity.Extensions.Strings.Matches(System.String,System.String)">
             <summary>
@@ -418,107 +237,6 @@
             </summary>
             <param name="input">The input string.</param>
             <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Entities.EntityIsDeletedException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.EntityIsDeletedException"/> class.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Entities.EntityIsDeletedException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.EntityIsDeletedException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:OpenEntity.Entities.EntityIsDeletedException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.EntityIsDeletedException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="inner">The inner.</param>
-        </member>
-        <member name="M:OpenEntity.Entities.EntityIsDeletedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.EntityIsDeletedException"/> class.
-            </summary>
-            <param name="info">The object that holds the serialized object data.</param>
-            <param name="context">The contextual information about the source or destination.</param>
-        </member>
-        <member name="T:OpenEntity.Entities.IEntity">
-            <summary>
-            Represents a repository entity, which has a related table schema (the entity is not a table). It also
-            has a collection of IEntityField which is editable.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Entities.IEntity.GetCurrentFieldValue(System.Int32)">
-            <summary>
-            Gets the current value of the Field with the index fieldIndex. Will refetch the complete entity's fields
-            from the database if necessary (i.e. the entity is outofsync.).
-            </summary>
-            <param name="fieldIndex">Index of Field to get the current value of</param>
-            <returns>The current value of the Field specified</returns>
-            <exception cref="T:OpenEntity.Entities.EntityIsDeletedException">When the entity is marked as deleted.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">When fieldIndex is smaller than 0 or bigger than the amount of fields in the fields collection.</exception>
-        </member>
-        <member name="M:OpenEntity.Entities.IEntity.SetNewFieldValue(System.String,System.Object)">
-            <summary>
-            Sets the Field with the name fieldName to the new value value. Also marks the fields as dirty. Will also refetch the complete entity's fields
-            from the database if necessary (i.e. the entity is outofsync.).
-            </summary>
-            <param name="fieldName">Name of Field to set the new value of</param>
-            <param name="value">Value to set</param>
-            <returns>true if the value is actually set, false otherwise.</returns>
-            <exception cref="T:OpenEntity.Entities.ValueTypeMismatchException">The value specified is not of the same IEntityField.DataType as the field.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">The value specified has a size that is larger than the maximum size defined for the related column in the databas</exception>
-        </member>
-        <member name="M:OpenEntity.Entities.IEntity.SetNewFieldValue(System.Int32,System.Object)">
-            <summary>
-            Sets the Field with the name fieldName to the new value value. Also marks the fields as dirty. Will refetch the complete entity's fields
-            from the database if necessary (i.e. the entity is outofsync.).
-            </summary>
-            <param name="fieldIndex">Index of Field to set the new value of</param>
-            <param name="value">Value to set</param>
-            <returns>true if the value is actually set, false otherwise.</returns>
-        </member>
-        <member name="M:OpenEntity.Entities.IEntity.GetCurrentFieldValue(System.String)">
-            <summary>
-            Gets the current value of the Field with the name fieldName. Will refetch the complete entity's fields
-            from the database if necessary (i.e. the entity is outofsync.).
-            </summary>
-            <param name="fieldName">Name of Field to get the current value of</param>
-            <returns>The current value of the Field specified</returns>
-            <exception cref="T:OpenEntity.Entities.EntityIsDeletedException">When the entity is marked as deleted.</exception>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntity.Table">
-            <summary>
-            Gets the schema for the table this entity is related to.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntity.IsNew">
-            <summary>
-            Marker for the entity object if the object is new and should be inserted when saved (true) or read from the
-            database (false).
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntity.IsDirty">
-            <summary>
-            Marker for the entity object if the object is 'dirty' (changed, true) or not (false).
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntity.EntityObjectID">
-            <summary>
-            Gets the unique Entity Object ID which is created at runtime when the entity is instantiated. Can be used for external caches.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntity.Fields">
-            <summary>
-            Gets a collection of fields for this entity.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntity.PrimaryKeyFields">
-            <summary>
-            Gets a list of the fields which form the primary key for this entity.
-            </summary>
         </member>
         <member name="M:OpenEntity.Entities.IProxyEntity.Initialize(OpenEntity.Entities.IEntityFields)">
             <summary>
@@ -578,11 +296,6 @@
             Pushes changes since the last <see cref="M:System.ComponentModel.IEditableObject.BeginEdit"/> or <see cref="M:System.ComponentModel.IBindingList.AddNew"/> call into the underlying object.
             </summary>
         </member>
-        <member name="M:OpenEntity.Entities.EntityDataObject.GetPrimaryKeyPredicateExpression">
-            <summary>
-            Gets an IPredicateExpression that represents the primary keys for this entity.
-            </summary>
-        </member>
         <member name="M:OpenEntity.Mapping.MappingConfig.AddAssembly(System.Reflection.Assembly)">
             <summary>
             Adds a mapping assembly to this config. This assembly will be included in the
@@ -596,49 +309,6 @@
             </summary>
             <param name="targetClass"></param>
             <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Entities.InvalidFieldReadException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.InvalidFieldReadException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:OpenEntity.Entities.InvalidFieldReadException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.InvalidFieldReadException"/> class.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Entities.InvalidFieldReadException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.InvalidFieldReadException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="innerException">The inner exception.</param>
-        </member>
-        <member name="M:OpenEntity.Entities.InvalidFieldReadException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.InvalidFieldReadException"/> class.
-            </summary>
-            <param name="info">The object that holds the information to deserialize.</param>
-            <param name="context">Contextual information about the source or destination.</param>
-            <exception cref="T:System.InvalidOperationException">
-            The current type is not a <see cref="T:System.Configuration.ConfigurationException"/> or a <see cref="T:System.Configuration.ConfigurationErrorsException"/>.
-            </exception>
-        </member>
-        <member name="T:OpenEntity.Entities.FieldIndex">
-            <summary>
-            Represents a Name/Index tuple.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.FieldIndex.Name">
-            <summary>
-            The name of the field used internally for fast-access.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.FieldIndex.Index">
-            <summary>
-            Index/Ordinal of the field used internally for fast-access.
-            </summary>
         </member>
         <member name="M:OpenEntity.CodeDom.BaseGenerator.InitCompiler">
             <summary>
@@ -719,24 +389,6 @@
             The current type is not a <see cref="T:System.Configuration.ConfigurationException"/> or a <see cref="T:System.Configuration.ConfigurationErrorsException"/>.
             </exception>
         </member>
-        <member name="P:OpenEntity.DataProviders.CommandExecutionException.QueryExecuted">
-            <summary>
-            Gets the query executed.
-            </summary>
-            <value>The query executed.</value>
-        </member>
-        <member name="P:OpenEntity.DataProviders.CommandExecutionException.Parameters">
-            <summary>
-            Gets the parameters.
-            </summary>
-            <value>The parameters.</value>
-        </member>
-        <member name="P:OpenEntity.DataProviders.CommandExecutionException.EntityInvolved">
-            <summary>
-            Gets or sets the entity involved.
-            </summary>
-            <value>The entity involved.</value>
-        </member>
         <member name="T:OpenEntity.Schema.ISchemaProvider">
             <summary>
             Indicates a provider that is capable of retrieving schema information via discovery.
@@ -799,6 +451,39 @@
             <returns>
             A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
             </returns>
+        </member>
+        <member name="T:OpenEntity.Schema.SchemaException">
+            <summary>
+            An exception that has occured due to a schema level issue
+            </summary>
+        </member>
+        <member name="M:OpenEntity.Schema.SchemaException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenEntity.Schema.SchemaException"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenEntity.Schema.SchemaException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenEntity.Schema.SchemaException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:OpenEntity.Schema.SchemaException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenEntity.Schema.SchemaException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:OpenEntity.Schema.SchemaException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenEntity.Schema.SchemaException"/> class.
+            </summary>
+            <param name="info">The object that holds the information to deserialize.</param>
+            <param name="context">Contextual information about the source or destination.</param>
+            <exception cref="T:System.InvalidOperationException">
+            The current type is not a <see cref="T:System.Configuration.ConfigurationException"/> or a <see cref="T:System.Configuration.ConfigurationErrorsException"/>.
+            </exception>
         </member>
         <member name="T:OpenEntity.DataProviders.IDataProvider">
             <summary>
@@ -955,7 +640,6 @@
         <member name="P:OpenEntity.DataProviders.IDataProvider.CommandTimeout">
             <summary>
             Gets / sets the timeout value to use with the command object(s) created by the repository.
-            Default is 30 seconds
             Set this prior to calling a method which executes database logic.
             </summary>
         </member>
@@ -1093,57 +777,6 @@
             The OR operator.
             </summary>
         </member>
-        <member name="T:OpenEntity.PredicateType">
-            <summary>
-            Enum definition for the type of a predicate instance.
-            This enum is stored in Predicate as an int and is used in DataAccessAdapterBase derived classes.
-            </summary>
-        </member>
-        <member name="T:OpenEntity.Entities.IEntityField">
-            <summary>
-            An entity field which holds a value. Inheriets of IColumn to hold all of the readonly schema information about the field.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntityField.CurrentValue">
-            <summary>
-            Gets the current value for this field and sets the new value for this field, by overwriting current value. The value in 
-            currentValue is discarded, versioning control has to save the original value of currentValue before this property is called. 
-            </summary>
-            <remarks>
-            Calling this property directly will not trigger versioning control,
-            thus calling this property directly is not recommended. Call <see cref="M:OpenEntity.Entities.IEntity.SetNewFieldValue(System.String,System.Object)"/> instead.
-            Type of the new value has to be the same as IFieldSchema.DataType, which is set in the
-            constructor. If this field is set to readonly, an exception is raised. 
-            </remarks>
-            <exception cref="!:FieldIsReadonlyException">The field is set to readonly and can't be changed.</exception>
-            <exception cref="T:OpenEntity.Entities.ValueTypeMismatchException">The value specified is not of the same IFieldSchema.DataType as this field.</exception>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntityField.IsChanged">
-            <summary>
-            If the value of this field is changed, this property is set to true. Set when <see cref="P:OpenEntity.Entities.IEntityField.CurrentValue"/> receives a valid value. 
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntityField.IsNull">
-            <summary>
-            If the original value in the column for this entityfield is DBNull (NULL), this parameter should be set to true, otherwise to false.
-            In BL Logic, it's impractical to work with NULL values, so these are converted to handable values. The developer can still determine if
-            the original value was DBNull by checking this field. Using NULL values is not recommended. 
-            If <see cref="P:OpenEntity.Schema.IColumn.IsNullable"/> is false, IsNull is undefined.
-            </summary>
-        </member>
-        <member name="T:OpenEntity.Repository.AggregateFunction">
-            <summary>
-            Enum definition for the various aggregate functions which can be applied to fields in a scalar fetch.    
-            Not all functions are legal on all fields. Some functions will produce errors when used with fields of a given type,
-            like a Sum function with a character field. This is the responsibility of the developer. Aggregate functions are
-            never applied to *lob fields. 
-            </summary>
-        </member>
-        <member name="F:OpenEntity.Repository.AggregateFunction.None">
-            <summary>
-            Default, do not apply an aggregate function to the field.
-            </summary>
-        </member>
         <member name="F:OpenEntity.Repository.AggregateFunction.Count">
             <summary>
             Calculates the amount of rows for the field. Results in COUNT(field) 
@@ -1208,143 +841,9 @@
             Converts a serialized string back to a generic object.
             </summary>
         </member>
-        <member name="M:OpenEntity.Entities.FieldIsReadOnlyException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.FieldIsReadOnlyException"/> class.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Entities.FieldIsReadOnlyException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.FieldIsReadOnlyException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:OpenEntity.Entities.FieldIsReadOnlyException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.FieldIsReadOnlyException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="innerException">The inner exception.</param>
-        </member>
-        <member name="M:OpenEntity.Entities.FieldIsReadOnlyException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.FieldIsReadOnlyException"/> class.
-            </summary>
-            <param name="info">The object that holds the information to deserialize.</param>
-            <param name="context">Contextual information about the source or destination.</param>
-            <exception cref="T:System.InvalidOperationException">
-            The current type is not a <see cref="T:System.Configuration.ConfigurationException"/> or a <see cref="T:System.Configuration.ConfigurationErrorsException"/>.
-            </exception>
-        </member>
         <member name="T:OpenEntity.Query.IPredicateExpression">
             <summary>
             Indicates a predicate which can be ultimately parsed into a Where clause as a predicate. It contains 0-n predicates.
-            </summary>
-        </member>
-        <member name="T:OpenEntity.Query.IPredicate">
-            <summary>
-            Interface for a predicate. Predicates are expressions which result in true or false, and which are used in WHERE clauses.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Query.IPredicate.ToQueryText(OpenEntity.DataProviders.IDataProvider,System.Int32@)">
-            <summary>
-            Retrieves a ready to use text representation of the contained Predicate.
-            </summary>
-            <param name="dataProvider">The data provider containing schema information (used to build the query).</param>
-            <param name="uniqueMarker">int counter which is appended to every parameter. The refcounter is increased by every parameter creation,
-            making sure the parameter is unique in the predicate and also in the predicate expression(s) containing the predicate.</param>
-            <returns>
-            The contained Predicate in textual format.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.Query.IPredicate.ToQueryText(OpenEntity.DataProviders.IDataProvider,System.Int32@,System.Boolean)">
-            <summary>
-            Retrieves a ready to use text representation of the contained Predicate.
-            </summary>
-            <param name="dataProvider">The data provider containing schema information (used to build the query).</param>
-            <param name="uniqueMarker">int counter which is appended to every parameter. The refcounter is increased by every parameter creation,
-            making sure the parameter is unique in the predicate and also in the predicate expression(s) containing the predicate.</param>
-            <param name="inHavingClause">if set to true, it will allow aggregate functions to be applied to colums.</param>
-            <returns>
-            The contained Predicate in textual format.
-            </returns>
-        </member>
-        <member name="P:OpenEntity.Query.IPredicate.Parameters">
-            <summary>
-            The list of parameters created when the Predicate was translated to text usable in a query. Only valid after a succesful call to ToQueryText
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Query.IPredicate.Negate">
-            <summary>
-            Flag for setting the Predicate to negate itself, i.e. to add 'NOT' to its result.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Query.IPredicateExpression.AddWithOr(OpenEntity.Query.IPredicate)">
-            <summary>
-            Adds an IPredicate implementing object to the Predicate Expression with an 'Or'-operator. 
-            The object added can be a Predicate derived class or a Predicate Expression . If no objects are present yet in the Predicate Expression,
-            the operator is ignored. 
-            </summary>
-            <param name="predicateToAdd">The IPredicate implementing object to add</param>
-            <exception cref="T:System.ArgumentNullException">When predicateToAdd is null</exception>
-            <returns>the Predicate on which this method is called, for command chaining</returns>
-        </member>
-        <member name="M:OpenEntity.Query.IPredicateExpression.AddWithAnd(OpenEntity.Query.IPredicate)">
-            <summary>
-            Adds an IPredicate implementing object to the Predicate Expression with an 'And'-operator. 
-            The object added can be a Predicate derived class or a PredicateExpression. If no objects are present yet in the Predicate Expression ,
-            the operator is ignored. 
-            </summary>
-            <param name="predicateToAdd">The IPredicate implementing object to add</param>
-            <exception cref="T:System.ArgumentNullException">When predicateToAdd is null</exception>
-            <returns>the Predicate on which this method is called, for command chaining</returns>
-        </member>
-        <member name="M:OpenEntity.Query.IPredicateExpression.Clear">
-            <summary>
-            Clears the constraints and predicate expression within.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Query.IPredicateExpression.Count">
-            <summary>
-            Gets the amount of predicate expression elements in this predicate expression. This is including all operators and constraints.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntityFields.Count">
-            <summary>
-            Gets the number of fields in this collection.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntityFields.IsDirty">
-            <summary>
-            Gets / sets the flag if the contents of the IEntityFields object is 'dirty', which means that one or more fields are changed. 
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntityFields.Item(System.Int32)">
-            <summary>
-            Gets / sets the IEntityField on the specified Index. 
-            </summary>
-            <exception cref="T:System.IndexOutOfRangeException">When the index specified is not found in the internal datastorage.</exception>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntityFields.Item(System.String)">
-            <summary>
-            Gets the IEntityField with the specified name.
-            </summary>
-            <exception cref="T:System.ArgumentException">When the specified name is the empty string or contains only spaces</exception>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntityFields.PrimaryKeyFields">
-            <summary>
-            List of IEntityField references which form the 'primary key', or uniquely identifying set of values for this set of fields, thus for the entity
-            holding these fields.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntityFields.State">
-            <summary>
-            The state of the EntityFields object, the heart and soul of every EntityObject.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Entities.IEntityFields.IdentityField">
-            <summary>
-            Gets the identity field, if there is one. If not, it returns null.
             </summary>
         </member>
         <member name="T:OpenEntity.Entities.EntityState">
@@ -1376,12 +875,6 @@
             available in the persistent storage.
             </summary>
         </member>
-        <member name="M:OpenEntity.Repository.BaseRepository`1.#ctor(OpenEntity.DataProviders.IDataProvider)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Repository.BaseRepository`1"/> class.
-            </summary>
-            <param name="dataProvider">The data provider.</param>
-        </member>
         <member name="M:OpenEntity.Repository.BaseRepository`1.CloseConnectionIfPossible">
             <summary>
             Closes the connection if it's not meant to be kept open or we're not in a transaction.
@@ -1398,7 +891,7 @@
             <param name="joinSet">The joins to walk.</param>
             <returns></returns>
         </member>
-        <member name="M:OpenEntity.Repository.BaseRepository`1.CreateSelectCommand(OpenEntity.Schema.ITable,System.Collections.Generic.IList{OpenEntity.Schema.IColumn},OpenEntity.Query.IPredicateExpression,OpenEntity.Joins.JoinSet,System.Int32)">
+        <member name="M:OpenEntity.Repository.BaseRepository`1.CreateSelectCommand(OpenEntity.Schema.ITable,System.Collections.Generic.IList{OpenEntity.Schema.IColumn},OpenEntity.Query.IPredicateExpression,OpenEntity.Joins.JoinSet,OpenEntity.Query.IOrderClause,System.Int32)">
             <summary>
             Creates a select command for a given table and the provided query predicate.
             </summary>
@@ -1671,66 +1164,6 @@
             Summary for the OracleSchemaVariable class
             </summary>
         </member>
-        <member name="T:OpenEntity.DataProviders.DataProviderFactory">
-            <summary>
-            An object which can create new instances of an IDataProvider.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.DataProviders.DataProviderFactory.CreateNewProvider(System.Configuration.ConnectionStringSettings)">
-            <summary>
-            Creates a new provider for the specified connection string.
-            </summary>
-            <param name="connectionStringSettings">The connection string settings.</param>
-            <returns>
-            The create IDataProvider. It should not return null.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.DataProviders.DataProviderFactory.CreateNewProvider(System.Configuration.ConnectionStringSettings,System.String)">
-            <summary>
-            Creates a new provider for the specified connection string.
-            </summary>
-            <param name="connectionStringSettings">The connection string settings.</param>
-            <param name="defaultSchemaName">The name of the default schema.</param>
-            <returns>
-            The create IDataProvider. It should not return null.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.DataProviders.DataProviderFactory.CreateNewProvider(System.String)">
-            <summary>
-            Creates a new provider for the specified connection string.a.
-            </summary>
-            <param name="connectionStringName">Name of the connection string.</param>
-            <returns>
-            The create IDataProvider. It should not return null.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.DataProviders.DataProviderFactory.CreateNewProvider(System.String,System.String)">
-            <summary>
-            Creates a new provider for the specified connection string.
-            </summary>
-            <param name="connectionStringName">Name of the connection string.</param>
-            <param name="defaultSchemaName">The name of the default schema.</param>
-            <returns>
-            The create IDataProvider. It should not return null.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.DataProviders.DataProviderFactory.CreateNewProvider(System.String,System.String,System.String)">
-            <summary>
-            Creates a new provider for the specified connection string.
-            </summary>
-            <param name="connectionString">The connection string.</param>
-            <param name="providerName">Name of the data provider client.</param>
-            <param name="defaultSchemaName">The name of the default schema.</param>
-            <returns>
-            The create IDataProvider. It should not return null.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.DataProviders.BaseDataProvider.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.DataProviders.BaseDataProvider"/> class.
-            </summary>
-            <param name="connectionString">The connection string.</param>
-        </member>
         <member name="M:OpenEntity.DataProviders.BaseDataProvider.CreateNewConnection(System.String)">
             <summary>
             Creates a new physical connection object.
@@ -1944,45 +1377,6 @@
             <summary>
             Gets or sets a value indicating whether this trace listener will write a ThreadId on a WriteLine.
             </summary>
-        </member>
-        <member name="M:OpenEntity.Entities.EntityOutOfSyncException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.EntityOutOfSyncException"/> class.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Entities.EntityOutOfSyncException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.EntityOutOfSyncException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:OpenEntity.Entities.EntityOutOfSyncException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.EntityOutOfSyncException"/> class.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="inner">The inner.</param>
-        </member>
-        <member name="M:OpenEntity.Entities.EntityOutOfSyncException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.EntityOutOfSyncException"/> class.
-            </summary>
-            <param name="info">The object that holds the information to deserialize.</param>
-            <param name="context">Contextual information about the source or destination.</param>
-            <exception cref="T:System.InvalidOperationException">
-            The current type is not a <see cref="T:System.Configuration.ConfigurationException"/> or a <see cref="T:System.Configuration.ConfigurationErrorsException"/>.
-            </exception>
-        </member>
-        <member name="T:OpenEntity.Entities.EntityField">
-            <summary>
-            Implementation of IEntityField
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Entities.EntityField.#ctor(OpenEntity.Schema.IColumn)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.EntityField"/> class.
-            </summary>
-            <param name="schema">The schema.</param>
         </member>
         <member name="M:OpenEntity.Entities.EntityField.BeginEdit">
             <summary>
@@ -2211,284 +1605,6 @@
         <member name="M:OpenEntity.DataProviders.SqlServerDataProvider.ParseColumnSchema(System.Data.DataRow)">
             <summary>
             Parses OleDb schema column information into a IColumn
-            </summary>
-        </member>
-        <member name="T:OpenEntity.Query.PredicateExpression">
-            <summary>
-            Implementation of the IPredicateExpression interface.
-            Predicates are expressions which result in true or false, and which are used in WHERE clauses.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Query.PredicateExpression.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Query.PredicateExpression"/> class.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Query.PredicateExpression.#ctor(OpenEntity.Query.IPredicate)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Query.PredicateExpression"/> class.
-            </summary>
-            <param name="predicateToAdd">The predicate to add.</param>
-        </member>
-        <member name="M:OpenEntity.Query.PredicateExpression.ToQueryText(OpenEntity.DataProviders.IDataProvider,System.Int32@)">
-            <summary>
-            Retrieves a ready to use text representation of the contained Predicate.
-            </summary>
-            <param name="dataProvider">The data provider containing schema information (used to build the query).</param>
-            <param name="uniqueMarker">int counter which is appended to every parameter. The refcounter is increased by every parameter creation,
-            making sure the parameter is unique in the predicate and also in the predicate expression(s) containing the predicate.</param>
-            <returns>
-            The contained Predicate in textual format.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.Query.PredicateExpression.ToQueryText(OpenEntity.DataProviders.IDataProvider,System.Int32@,System.Boolean)">
-            <summary>
-            Retrieves a ready to use text representation of the contained Predicate.
-            </summary>
-            <param name="dataProvider">The data provider containing schema information (used to build the query).</param>
-            <param name="uniqueMarker">int counter which is appended to every parameter. The refcounter is increased by every parameter creation,
-            making sure the parameter is unique in the predicate and also in the predicate expression(s) containing the predicate.</param>
-            <param name="inHavingClause">if set to true, it will allow aggregate functions to be applied to columns.</param>
-            <returns>
-            The contained Predicate in textual format.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.Query.PredicateExpression.Clear">
-            <summary>
-            Clears the constraints and predicate expression within.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Query.PredicateExpression.AddWithAnd(OpenEntity.Query.IPredicate)">
-            <summary>
-            Adds an IPredicate implementing object to the Predicate Expression with an 'And'-operator.
-            The object added can be a Predicate derived class or a PredicateExpression. If no objects are present yet in the Predicate Expression ,
-            the operator is ignored.
-            </summary>
-            <param name="predicateToAdd">The IPredicate implementing object to add</param>
-            <returns>
-            the Predicate on which this method is called, for command chaining
-            </returns>
-            <exception cref="T:System.ArgumentNullException">When predicateToAdd is null</exception>
-        </member>
-        <member name="M:OpenEntity.Query.PredicateExpression.AddWithOr(OpenEntity.Query.IPredicate)">
-            <summary>
-            Adds an IPredicate implementing object to the Predicate Expression with an 'Or'-operator.
-            The object added can be a Predicate derived class or a Predicate Expression . If no objects are present yet in the Predicate Expression,
-            the operator is ignored.
-            </summary>
-            <param name="predicateToAdd">The IPredicate implementing object to add</param>
-            <returns>
-            the Predicate on which this method is called, for command chaining
-            </returns>
-            <exception cref="T:System.ArgumentNullException">When predicateToAdd is null</exception>
-        </member>
-        <member name="M:OpenEntity.Query.PredicateExpression.AddPredicate(System.Object,OpenEntity.PredicateExpressionOperator)">
-            <summary>
-            Adds an element.
-            </summary>
-            <param name="elementToAdd">The element to add.</param>
-            <param name="operatorToUse">The operator to use.</param>
-        </member>
-        <member name="P:OpenEntity.Query.PredicateExpression.Parameters">
-            <summary>
-            The list of parameters created when the Predicate was translated to text usable in a query. Only valid after a succesful call to ToQueryText
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Query.PredicateExpression.Negate">
-            <summary>
-            Flag for setting the Predicate to negate itself, i.e. to add 'NOT' to its result.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Query.PredicateExpression.Count">
-            <summary>
-            Gets the amount of predicate expression elements in this predicate expression. This is including all operators and constraints.
-            </summary>
-        </member>
-        <member name="T:OpenEntity.Query.ColumnConstraint">
-            <summary>
-            A predicate which encapsulates a column based constraint
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.#ctor(OpenEntity.Schema.IColumn)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Query.ColumnConstraint"/> class.
-            </summary>
-            <param name="column">The column to constrain.</param>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.#ctor(System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Query.ColumnConstraint"/> class.
-            </summary>
-            <param name="constraintTableName">Name of the table that the constraint column belongs to.</param>
-            <param name="constraintColumnName">Name of the column that the constraint will be applied to.</param>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsLike(System.String)">
-            <summary>
-            Creates a LIKE statement.
-            </summary>
-            <param name="value">The value.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsNotLike(System.String)">
-            <summary>
-            Creates a NOT LIKE statement
-            </summary>
-            <param name="value">The value.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsGreaterThan(System.Object)">
-            <summary>
-            Creates a "&gt;" GREATER THAN statement
-            </summary>
-            <param name="value">The value.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsGreaterThanOrEqualTo(System.Object)">
-            <summary>
-            Creates a "&gt;=" GREATER THAN OR EQUAL TO statement
-            </summary>
-            <param name="value">The value.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsIn(System.Collections.IEnumerable)">
-            <summary>
-            Creates an IN statement
-            </summary>
-            <param name="values">Value array</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsNotIn(System.Collections.IEnumerable)">
-            <summary>
-            Creates a NOT IN statement
-            </summary>
-            <param name="values">Value array</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsLessThan(System.Object)">
-            <summary>
-            Creates a "&lt;" LESS THAN statement
-            </summary>
-            <param name="value">The value.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsLessThanOrEqualTo(System.Object)">
-            <summary>
-            Creates a "&lt;=" LESS THAN OR EQUAL TO statement
-            </summary>
-            <param name="value">The value.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsNotNull">
-            <summary>
-            Creates an IS NOT NULL statement
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsNull">
-            <summary>
-            Creates an IS NULL statement
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsBetweenAnd(System.Object,System.Object)">
-            <summary>
-            Creates an BETWEEN statement
-            </summary>
-            <param name="val1">The value1.</param>
-            <param name="val2">The value2.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsEqualTo(System.Object)">
-            <summary>
-            Creates a "=" EQUALS statement
-            </summary>
-            <param name="value">The value.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.IsNotEqualTo(System.Object)">
-            <summary>
-            Creates a "!=" NOT EQUALS statement
-            </summary>
-            <param name="value">The value.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.ToQueryText(OpenEntity.DataProviders.IDataProvider,System.Int32@)">
-            <summary>
-            Retrieves a ready to use text representation of the contained Predicate.
-            </summary>
-            <param name="dataProvider">The data provider containing schema information (used to build the query).</param>
-            <param name="uniqueMarker">int counter which is appended to every parameter. The refcounter is increased by every parameter creation,
-            making sure the parameter is unique in the predicate and also in the predicate expression(s) containing the predicate.</param>
-            <returns>
-            The contained Predicate in textual format.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.ToQueryText(OpenEntity.DataProviders.IDataProvider,System.Int32@,System.Boolean)">
-            <summary>
-            Retrieves a ready to use text representation of the contained Predicate.
-            </summary>
-            <param name="uniqueMarker">int counter which is appended to every parameter. The refcounter is increased by every parameter creation,
-            making sure the parameter is unique in the predicate and also in the predicate expression(s) containing the predicate.</param>
-            <param name="inHavingClause">if set to true, it will allow aggregate functions to be applied to colomns.</param>
-            <returns>
-            The contained Predicate in textual format.
-            </returns>
-        </member>
-        <member name="M:OpenEntity.Query.ColumnConstraint.GetComparisonOperator(OpenEntity.ConstraintComparison)">
-            <summary>
-            Gets the comparison operator string for the provided constraint comparison.
-            </summary>
-            <param name="comp">The constraint comparison.</param>
-            <returns></returns>
-        </member>
-        <member name="P:OpenEntity.Query.ColumnConstraint.ColumnName">
-            <summary>
-            Gets the name of the column that the constraint will be applied to.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Query.ColumnConstraint.TableName">
-            <summary>
-            Gets the name of the table that the column belongs to. This value may be empty if not specified.
-            </summary>
-            <remarks>
-            This is really only useful in the case of a join, where the table name is required.
-            But we still need it to obtain schema information to generate the predicate.
-            </remarks>
-        </member>
-        <member name="P:OpenEntity.Query.ColumnConstraint.Comparison">
-            <summary>
-            Gets the type of comparison being used for this constraint.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Query.ColumnConstraint.ParameterValue">
-            <summary>
-            Gets a single value associated with this constraint
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Query.ColumnConstraint.InValues">
-            <summary>
-            Gets an enumerable of values associated with this constraint.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Query.ColumnConstraint.StartValue">
-            <summary>
-            For a range of values, this is the start associated with this constraint.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Query.ColumnConstraint.EndValue">
-            <summary>
-            For a range of values, this is the end associated with this constraint.
-            </summary>
-        </member>
-        <member name="P:OpenEntity.Query.ColumnConstraint.Parameters">
-            <summary>
-            The list of parameters created when the Predicate was translated to text usable in a query. Only valid after a succesful call to ToQueryText
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:OpenEntity.Query.ColumnConstraint.Negate">
-            <summary>
-            Flag for setting the Predicate to negate itself, i.e. to add 'NOT' to its result.
             </summary>
         </member>
     </members>

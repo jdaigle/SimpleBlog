@@ -48,10 +48,12 @@ namespace SimpleBlog.Web.Controllers
         {
             try
             {
+                articleRepostory.Save(article);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
+                ModelState.AddModelError("Exception", e);
                 return View();
             }
         }

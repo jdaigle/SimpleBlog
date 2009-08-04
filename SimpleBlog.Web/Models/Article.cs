@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using OpenEntity.Model;
 
 namespace SimpleBlog.Web.Models
 {
-    public class Article
+    public class Article : IDomainObject
     {
         public virtual int Id { get; set; }
         public virtual string Title { get; set; }
