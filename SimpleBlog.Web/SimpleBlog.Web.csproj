@@ -68,7 +68,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\Mappings\ArticleMapping.cs" />
+    <Compile Include="Models\Config\ArticleMapping.cs" />
     <Compile Include="Models\Repositories\ArticleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4MVC.cs">

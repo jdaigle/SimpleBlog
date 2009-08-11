@@ -256,31 +256,6 @@
             A value indicated whether the entity has been initialized with an IEntityFields collection.
             </summary>
         </member>
-        <member name="M:OpenEntity.Entities.EntityDataObject.#ctor(OpenEntity.Schema.ITable)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenEntity.Entities.EntityDataObject"/> class.
-            </summary>
-            <param name="table">The table schema.</param>
-        </member>
-        <member name="M:OpenEntity.Entities.EntityDataObject.SetValue(System.Int32,System.Object)">
-            <summary>
-            Sets the value of the field with the index specified to the value specified. 
-            </summary>
-            <param name="fieldIndex">The fieldindex of the field which value to set.</param>
-            <param name="value">The value to set the field's currentvalue to.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">When fieldIndex is smaller than 0 or bigger than the amount of fields in the fields collection.</exception>
-            <returns>true if the value is actually set, false otherwise</returns>
-        </member>
-        <member name="M:OpenEntity.Entities.EntityDataObject.GetValue(System.Int32)">
-            <summary>
-            Gets the value of the field with the index specified. 
-            </summary>
-            <param name="fieldIndex">Index of the field.</param>
-            <returns>the value of the field</returns>
-            <exception cref="T:OpenEntity.Entities.EntityOutOfSyncException">When the entity is out of sync and needs to be refetched first.</exception>
-            <exception cref="T:OpenEntity.Entities.EntityIsDeletedException">When the entity is marked as deleted.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">When fieldIndex is smaller than 0 or bigger than the amount of fields in the fields collection.</exception>
-        </member>
         <member name="M:OpenEntity.Entities.EntityDataObject.BeginEdit">
             <summary>
             Begins an edit on an object.
@@ -296,20 +271,6 @@
             Pushes changes since the last <see cref="M:System.ComponentModel.IEditableObject.BeginEdit"/> or <see cref="M:System.ComponentModel.IBindingList.AddNew"/> call into the underlying object.
             </summary>
         </member>
-        <member name="M:OpenEntity.Mapping.MappingConfig.AddAssembly(System.Reflection.Assembly)">
-            <summary>
-            Adds a mapping assembly to this config. This assembly will be included in the
-            search for IClassMapping implementations.
-            </summary>
-            <param name="assembly"></param>
-        </member>
-        <member name="M:OpenEntity.Mapping.MappingConfig.FindClassMapping(System.Type)">
-            <summary>
-            Attempts to find the IClassMapping for the specified target class Type.
-            </summary>
-            <param name="targetClass"></param>
-            <returns></returns>
-        </member>
         <member name="M:OpenEntity.CodeDom.BaseGenerator.InitCompiler">
             <summary>
             Set up the compiler options
@@ -321,12 +282,6 @@
             required to build the class
             </summary>
             <param name="name"></param>
-        </member>
-        <member name="M:OpenEntity.CodeDom.ProxyGenerator.#ctor(OpenEntity.Mapping.IClassMapping)">
-            <summary>
-            ctor
-            </summary>
-            <param name="classMapping">The target class mapping</param>
         </member>
         <member name="M:OpenEntity.CodeDom.ProxyGenerator.Build(System.String)">
             <summary>
@@ -388,6 +343,9 @@
             <exception cref="T:System.InvalidOperationException">
             The current type is not a <see cref="T:System.Configuration.ConfigurationException"/> or a <see cref="T:System.Configuration.ConfigurationErrorsException"/>.
             </exception>
+        </member>
+        <member name="M:OpenEntity.Validation.IClassValidator.AssertValid(System.Object)">
+            <exception cref="T:OpenEntity.Validation.InvalidStateException">Thrown when invalid values are found on the entity.</exception>
         </member>
         <member name="T:OpenEntity.Schema.ISchemaProvider">
             <summary>
@@ -875,63 +833,6 @@
             available in the persistent storage.
             </summary>
         </member>
-        <member name="M:OpenEntity.Repository.BaseRepository`1.CloseConnectionIfPossible">
-            <summary>
-            Closes the connection if it's not meant to be kept open or we're not in a transaction.
-            </summary>
-        </member>
-        <member name="M:OpenEntity.Repository.BaseRepository`1.CreateAggregateCommand(OpenEntity.Schema.ITable,OpenEntity.Schema.IColumn,OpenEntity.Repository.AggregateFunction,OpenEntity.Query.IPredicateExpression,OpenEntity.Joins.JoinSet)">
-            <summary>
-            Creates the aggregate command for the given table, field, function and query predicate
-            </summary>
-            <param name="fromTable">From table.</param>
-            <param name="column">The column.</param>
-            <param name="aggregateFunction">The aggregate function.</param>
-            <param name="queryPredicate">The query predicate.</param>
-            <param name="joinSet">The joins to walk.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Repository.BaseRepository`1.CreateSelectCommand(OpenEntity.Schema.ITable,System.Collections.Generic.IList{OpenEntity.Schema.IColumn},OpenEntity.Query.IPredicateExpression,OpenEntity.Joins.JoinSet,OpenEntity.Query.IOrderClause,System.Int32)">
-            <summary>
-            Creates a select command for a given table and the provided query predicate.
-            </summary>
-            <param name="fromTable">From table.</param>
-            <param name="columnsToSelect">The columns to select.</param>
-            <param name="queryPredicate">The query predicate.</param>
-            <param name="joinsToWalk">The joins to walk.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Repository.BaseRepository`1.WalkJoins(OpenEntity.Joins.JoinSet)">
-            <summary>
-            Walks the relationships and produces the aggregate JOIN statements
-            </summary>
-            <param name="joins">The join collection.</param>
-        </member>
-        <member name="M:OpenEntity.Repository.BaseRepository`1.CreateJoin(OpenEntity.Joins.Join)">
-            <summary>
-            Creates a JOIN statement for for the given relationship
-            </summary>
-            <param name="join">The join.</param>
-        </member>
-        <member name="M:OpenEntity.Repository.BaseRepository`1.CreateCommandForEntityToSave(System.Boolean,OpenEntity.Entities.IProxyEntity,OpenEntity.Query.IPredicateExpression)">
-            <summary>
-            Creates an action command to insert or update an entity's fields.
-            </summary>
-            <param name="insertActions">if set to <c>true</c> then it is an insert command. Otherwise it is an update.</param>
-            <param name="entityToSave">The entity to save.</param>
-            <param name="updateRestriction">The update restriction predicate to use.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Repository.BaseRepository`1.CreateDeleteCommand(OpenEntity.Entities.IProxyEntity,OpenEntity.Query.IPredicateExpression)">
-            <summary>
-            Creates a new Delete Command object which is ready to use.
-            </summary>
-            <param name="entityToDelete">The entity to delete.</param>
-            <param name="deleteRestriction">The delete restriction.</param>
-            <returns>
-            IActionCommand instance which is ready to be used.
-            </returns>
-        </member>
         <member name="T:OpenEntity.Schema.DatabaseColumn">
             <summary>
             General container class for static column information which is readonly at runtime and which is equal for all instances of a 
@@ -949,6 +850,63 @@
             </summary>
             <returns>
             A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:OpenEntity.Repository.RepositoryBase`1.CloseConnectionIfPossible">
+            <summary>
+            Closes the connection if it's not meant to be kept open or we're not in a transaction.
+            </summary>
+        </member>
+        <member name="M:OpenEntity.Repository.RepositoryBase`1.CreateAggregateCommand(OpenEntity.Schema.ITable,OpenEntity.Schema.IColumn,OpenEntity.Repository.AggregateFunction,OpenEntity.Query.IPredicateExpression,OpenEntity.Joins.JoinSet)">
+            <summary>
+            Creates the aggregate command for the given table, field, function and query predicate
+            </summary>
+            <param name="fromTable">From table.</param>
+            <param name="column">The column.</param>
+            <param name="aggregateFunction">The aggregate function.</param>
+            <param name="queryPredicate">The query predicate.</param>
+            <param name="joinSet">The joins to walk.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenEntity.Repository.RepositoryBase`1.CreateSelectCommand(OpenEntity.Schema.ITable,System.Collections.Generic.IList{OpenEntity.Schema.IColumn},OpenEntity.Query.IPredicateExpression,OpenEntity.Joins.JoinSet,OpenEntity.Query.IOrderClause,System.Int32)">
+            <summary>
+            Creates a select command for a given table and the provided query predicate.
+            </summary>
+            <param name="fromTable">From table.</param>
+            <param name="columnsToSelect">The columns to select.</param>
+            <param name="queryPredicate">The query predicate.</param>
+            <param name="joinsToWalk">The joins to walk.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenEntity.Repository.RepositoryBase`1.WalkJoins(OpenEntity.Joins.JoinSet)">
+            <summary>
+            Walks the relationships and produces the aggregate JOIN statements
+            </summary>
+            <param name="joins">The join collection.</param>
+        </member>
+        <member name="M:OpenEntity.Repository.RepositoryBase`1.CreateJoin(OpenEntity.Joins.Join)">
+            <summary>
+            Creates a JOIN statement for for the given relationship
+            </summary>
+            <param name="join">The join.</param>
+        </member>
+        <member name="M:OpenEntity.Repository.RepositoryBase`1.CreateCommandForEntityToSave(System.Boolean,OpenEntity.Entities.IProxyEntity,OpenEntity.Query.IPredicateExpression)">
+            <summary>
+            Creates an action command to insert or update an entity's fields.
+            </summary>
+            <param name="insertActions">if set to <c>true</c> then it is an insert command. Otherwise it is an update.</param>
+            <param name="entityToSave">The entity to save.</param>
+            <param name="updateRestriction">The update restriction predicate to use.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenEntity.Repository.RepositoryBase`1.CreateDeleteCommand(OpenEntity.Entities.IProxyEntity,OpenEntity.Query.IPredicateExpression)">
+            <summary>
+            Creates a new Delete Command object which is ready to use.
+            </summary>
+            <param name="entityToDelete">The entity to delete.</param>
+            <param name="deleteRestriction">The delete restriction.</param>
+            <returns>
+            IActionCommand instance which is ready to be used.
             </returns>
         </member>
         <member name="M:OpenEntity.Logging.LogTraceListenerCollection.#ctor">
@@ -1438,40 +1396,6 @@
             <returns>
             true if the arrays contain the same values and are of the same length
             </returns>
-        </member>
-        <member name="M:OpenEntity.Mapping.ClassMapping`1.ForTable(System.String)">
-            <summary>
-            Sets the table name for this class map.
-            </summary>
-            <param name="tableName">Name of the table.</param>
-        </member>
-        <member name="M:OpenEntity.Mapping.ClassMapping`1.Map(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
-            <summary>
-            Maps the property returned in the specified expression to the column of the same name.
-            </summary>
-            <param name="expression">The expression.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Mapping.ClassMapping`1.Map(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String)">
-            <summary>
-            Maps the property returned in the specified expression to the specified column name.
-            </summary>
-            <param name="expression">The expression.</param>
-            <param name="columnName">Name of the column.</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenEntity.Mapping.ClassMapping`1.Map(System.Reflection.PropertyInfo,System.String)">
-            <summary>
-            Maps the specified property to the specified column name.
-            </summary>
-            <param name="property">The property.</param>
-            <param name="columnName">Name of the column.</param>
-            <returns></returns>
-        </member>
-        <member name="P:OpenEntity.Mapping.ClassMapping`1.Table">
-            <summary>
-            The name of the table mapped.
-            </summary>
         </member>
         <member name="M:OpenEntity.Extensions.Versions.TryParse(System.String,System.Version@)">
             <summary>

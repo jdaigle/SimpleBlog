@@ -1,0 +1,3 @@
+[submodule "submodules/cridionmvc"]
+	path = submodules/cridionmvc
+	url = git@github.com:jdaigle/CridionMVC.git

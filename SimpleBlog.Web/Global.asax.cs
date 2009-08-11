@@ -30,7 +30,7 @@ namespace SimpleBlog.Web
 
         public static void InitializeDataAccess()
         {
-            MappingConfig.AddAssembly(typeof(MvcApplication).Assembly);
+            MappingConfiguration.AddAssembly(typeof(MvcApplication).Assembly);
         }
 
         protected void Application_Start()

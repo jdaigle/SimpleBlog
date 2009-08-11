@@ -9,7 +9,7 @@ using System.Data;
 
 namespace SimpleBlog.Web.Models.Repositories
 {
-    public class ArticleRepository : BaseRepository<Article>
+    public class ArticleRepository : RepositoryBase<Article>
     {
         public ArticleRepository(IDataProvider dataProvider)
             :base(dataProvider)
