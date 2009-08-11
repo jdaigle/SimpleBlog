@@ -1,0 +1,17 @@
+<publishData>
+  <publishTarget publishUrl="ftp://redstorm.cridion.com/">
+    <file relUrl="Global.asax" publishTime="08/02/2009 17:02:50" />
+    <file relUrl="bin/Microsoft.Web.Mvc.dll" publishTime="08/04/2009 22:29:16" />
+    <file relUrl="bin/SimpleBlog.Web.dll" publishTime="08/10/2009 22:17:33" />
+    <file relUrl="bin/OpenEntity.Core.dll" publishTime="08/08/2009 13:15:42" />
+    <file relUrl="Views/Articles/Create.aspx" publishTime="08/10/2009 20:32:29" />
+    <file relUrl="Views/Account/LogOn.aspx" publishTime="08/10/2009 22:14:57" />
+    <file relUrl="Views/Articles/List.aspx" publishTime="08/10/2009 20:33:07" />
+    <file relUrl="Web.config" publishTime="08/10/2009 22:09:40" />
+    <file relUrl="Default.aspx" publishTime="08/02/2009 17:02:50" />
+    <file relUrl="bin/OpenEntity.Core.xml" publishTime="08/08/2009 13:15:42" />
+    <file relUrl="bin/SimpleBlog.Web.pdb" publishTime="08/10/2009 22:17:33" />
+    <file relUrl="Views/Articles/Details.aspx" publishTime="08/10/2009 20:33:01" />
+    <file relUrl="Views/Web.config" publishTime="08/02/2009 17:02:50" />
+  </publishTarget>
+</publishData>

@@ -11,7 +11,7 @@
         <h1><%= Html.ActionLink(article.Title, MVC.Articles.Details(article.Id)) %></h1>
         <h2><%= article.ShowOn.ToLongDateString() %></h2>
         <p>
-            <%= article.Content %>
+            <%= Html.Markdown(article.Content) %>
         </p>
     <% } %>
     

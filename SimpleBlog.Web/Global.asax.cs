@@ -23,7 +23,7 @@ namespace SimpleBlog.Web
             routes.MapRoute(
                 "Default",
                 "{controller}/{action}/{id}",
-                new { controller = MVC.Articles.Name, action = MVC.Articles.Actions.Index, id = "" }
+                new { controller = MVC.Static.Name, action = MVC.Static.Actions.Index, id = "" }
             );
 
         }

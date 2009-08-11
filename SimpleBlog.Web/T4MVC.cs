@@ -16,11 +16,47 @@ using T4MVC;
 
 [CompilerGenerated]
 public static class MVC {
+    public static SimpleBlog.Web.Controllers.AccountController Account = new T4MVC_AccountController();
     public static SimpleBlog.Web.Controllers.ArticlesController Articles = new T4MVC_ArticlesController();
-    public static T4MVC.SharedController Shared = new T4MVC.SharedController();
+    public static SimpleBlog.Web.Controllers.StaticController Static = new T4MVC_StaticController();
 }
 
 
+namespace SimpleBlog.Web.Controllers {
+    public partial class AccountController {
+
+        public AccountController() { }
+
+        [CompilerGenerated]
+        protected AccountController(_Dummy d) { }
+
+        protected RedirectToRouteResult RedirectToAction(ActionResult result) {
+            var callInfo = (IT4MVCActionResult)result;
+            return RedirectToRoute(callInfo.RouteValues);
+        }
+
+
+        [CompilerGenerated]
+        public readonly string Name = "Account";
+
+        static readonly _Actions s_actions = new _Actions();
+        [CompilerGenerated]
+        public _Actions Actions { get { return s_actions; } }
+        [CompilerGenerated]
+        public class _Actions {
+            public readonly string LogOn = "LogOn";
+            public readonly string LogOff = "LogOff";
+        }
+
+        static readonly _Views s_views = new _Views();
+        [CompilerGenerated]
+        public _Views Views { get { return s_views; } }
+        [CompilerGenerated]
+        public class _Views {
+            public readonly string LogOn = "LogOn";
+        }
+    }
+}
 namespace SimpleBlog.Web.Controllers {
     public partial class ArticlesController {
 
@@ -74,21 +110,65 @@ namespace SimpleBlog.Web.Controllers {
         }
     }
 }
-namespace T4MVC {
-    public class SharedController {
+namespace SimpleBlog.Web.Controllers {
+    public partial class StaticController {
 
+        public StaticController() { }
+
+        [CompilerGenerated]
+        protected StaticController(_Dummy d) { }
+
+        protected RedirectToRouteResult RedirectToAction(ActionResult result) {
+            var callInfo = (IT4MVCActionResult)result;
+            return RedirectToRoute(callInfo.RouteValues);
+        }
+
+
+        [CompilerGenerated]
+        public readonly string Name = "Static";
+
+        static readonly _Actions s_actions = new _Actions();
+        [CompilerGenerated]
+        public _Actions Actions { get { return s_actions; } }
+        [CompilerGenerated]
+        public class _Actions {
+            public readonly string Index = "Index";
+            public readonly string Projects = "Projects";
+        }
 
         static readonly _Views s_views = new _Views();
         [CompilerGenerated]
         public _Views Views { get { return s_views; } }
         [CompilerGenerated]
         public class _Views {
-            public readonly string Error = "Error";
         }
     }
 }
 
 namespace T4MVC {
+    [CompilerGenerated]
+    public class T4MVC_AccountController: SimpleBlog.Web.Controllers.AccountController {
+        public T4MVC_AccountController() : base(_Dummy.Instance) { }
+
+        public override ActionResult LogOn() {
+            var callInfo = new T4MVC_ActionResult("Account", Actions.LogOn);
+            return callInfo;
+        }
+
+        public override ActionResult LogOn(string password, bool rememberMe, string returnUrl) {
+            var callInfo = new T4MVC_ActionResult("Account", Actions.LogOn);
+            callInfo.RouteValues.Add("password", password);
+            callInfo.RouteValues.Add("rememberMe", rememberMe);
+            callInfo.RouteValues.Add("returnUrl", returnUrl);
+            return callInfo;
+        }
+
+        public override ActionResult LogOff() {
+            var callInfo = new T4MVC_ActionResult("Account", Actions.LogOff);
+            return callInfo;
+        }
+
+    }
     [CompilerGenerated]
     public class T4MVC_ArticlesController: SimpleBlog.Web.Controllers.ArticlesController {
         public T4MVC_ArticlesController() : base(_Dummy.Instance) { }
@@ -130,6 +210,21 @@ namespace T4MVC {
         public override ActionResult Edit(SimpleBlog.Web.Models.Article article) {
             var callInfo = new T4MVC_ActionResult("Articles", Actions.Edit);
             callInfo.RouteValues.Add("article", article);
+            return callInfo;
+        }
+
+    }
+    [CompilerGenerated]
+    public class T4MVC_StaticController: SimpleBlog.Web.Controllers.StaticController {
+        public T4MVC_StaticController() : base(_Dummy.Instance) { }
+
+        public override ActionResult Index() {
+            var callInfo = new T4MVC_ActionResult("Static", Actions.Index);
+            return callInfo;
+        }
+
+        public override ActionResult Projects() {
+            var callInfo = new T4MVC_ActionResult("Static", Actions.Projects);
             return callInfo;
         }
 
@@ -241,27 +336,6 @@ public class T4MVC_ActionResult : ActionResult, IT4MVCActionResult {
 
 
 namespace Links {
-    [CompilerGenerated]
-    public static class @Scripts {
-        public static string Url() { return VirtualPathUtility.ToAbsolute("~/Scripts"); }
-        public static string Url(string fileName) { return VirtualPathUtility.ToAbsolute("~/Scripts/" + fileName); }
-        public static readonly string jquery_1_3_2_vsdoc_js = Url("jquery-1.3.2-vsdoc.js");
-        public static readonly string jquery_1_3_2_js = Url("jquery-1.3.2.js");
-        public static readonly string jquery_1_3_2_min_vsdoc_js = Url("jquery-1.3.2.min-vsdoc.js");
-        public static readonly string jquery_1_3_2_min_js = Url("jquery-1.3.2.min.js");
-        public static readonly string MicrosoftAjax_debug_js = Url("MicrosoftAjax.debug.js");
-        public static readonly string MicrosoftAjax_js = Url("MicrosoftAjax.js");
-        public static readonly string MicrosoftMvcAjax_debug_js = Url("MicrosoftMvcAjax.debug.js");
-        public static readonly string MicrosoftMvcAjax_js = Url("MicrosoftMvcAjax.js");
-    }
-
-    [CompilerGenerated]
-    public static class @Content {
-        public static string Url() { return VirtualPathUtility.ToAbsolute("~/Content"); }
-        public static string Url(string fileName) { return VirtualPathUtility.ToAbsolute("~/Content/" + fileName); }
-        public static readonly string Site_css = Url("Site.css");
-    }
-
 }
 
 #endregion T4MVC

@@ -38,12 +38,15 @@ namespace SimpleBlog.Web.Controllers
             return View(article);
         }
 
+        [Authorize]
         public virtual ActionResult Create()
         {
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateInput(false)]
+        [Authorize]
         public virtual ActionResult Create(Article article)
         {
             try
@@ -58,12 +61,14 @@ namespace SimpleBlog.Web.Controllers
             }
         }
 
+        [Authorize]
         public virtual ActionResult Edit(int id)
         {
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize]
         public virtual ActionResult Edit(Article article)
         {
             try

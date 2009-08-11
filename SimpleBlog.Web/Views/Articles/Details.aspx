@@ -10,7 +10,7 @@
     <h1><%= Model.Title %></h1>
     <h2><%= Model.ShowOn.ToShortDateString() %></h2>
     <p>
-        <%= Model.Content %>
+        <%= Html.Markdown(Model.Content) %>
     </p>
     <p>
         <%= Html.ActionLink("Back to List", MVC.Articles.List()) %>
