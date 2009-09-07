@@ -7,12 +7,15 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		SQLite|Any CPU = SQLite|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1707AF22-EAA0-4DD0-A510-9B021F40D54E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1707AF22-EAA0-4DD0-A510-9B021F40D54E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1707AF22-EAA0-4DD0-A510-9B021F40D54E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1707AF22-EAA0-4DD0-A510-9B021F40D54E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1707AF22-EAA0-4DD0-A510-9B021F40D54E}.SQLite|Any CPU.ActiveCfg = SQLite|Any CPU
+		{1707AF22-EAA0-4DD0-A510-9B021F40D54E}.SQLite|Any CPU.Build.0 = SQLite|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

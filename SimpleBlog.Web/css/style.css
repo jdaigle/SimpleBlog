@@ -1,0 +1,227 @@
+body
+{
+  background: #12697a url(../images/background_strip.png) repeat-x top left;
+	margin: 0px; 
+	padding: 0px;
+	font-family: "Segoe Print", Verdana, sans-serif;
+	font-size: 12px;
+}
+
+#head
+{
+  background: #fefa84 url(../images/header_empty.png) no-repeat top left;
+	width: 1000px;
+	height: 253px;
+	padding: 0px;
+	margin: 0 auto;
+}
+
+#logo
+{
+  background: url(../images/logo.png) no-repeat top left;
+  width: 426px;
+  height: 96px;
+	position: relative;
+	top: 70px;
+	left: 290px;
+}
+
+#body_wrapper
+{
+  background: url(../images/body_cont.png) repeat-y top left;
+	margin: 0px auto;
+	width: 1000px;
+	display: block;
+}
+
+#body
+{
+  background: url(../images/body_top.png) no-repeat top left;
+	float: left;
+	padding: 10px 20px 0px 20px;
+	min-height: 441px;
+	display: block;
+	left: 2px;
+}
+
+#end_body
+{
+  background: url(../images/footer.png) no-repeat top left;
+	margin: 0px auto;
+	width: 1000px;
+	height: 59px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+#end_body2
+{
+  background: #fefa84 url(../images/footer_background.png) repeat-x top left;
+	margin: 0px auto; 
+	padding: 0px;
+	height: 59px;
+}
+
+.clearer
+{
+  clear: both;
+	height: 1px;
+}
+
+.content 
+{
+  padding: 0px 200px;
+}
+
+#footer
+{
+  margin: 0 auto; 
+	width: 901px;
+	text-align: center;
+	color: #B05128;
+	font-weight: bold;
+}
+
+#footer a
+{
+ color: #B05128;
+}
+
+#right ul a:hover 
+{
+	color: #FFFFFF;
+	background: #822C0F;
+}
+
+
+/* Navigation */
+
+
+
+/*  Headers  */
+h1 
+{
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 5px;
+	color: #000000;
+	background-color: transparent;
+	font-size: 1.6em;
+	font-weight: bold;
+}
+
+h2 
+{
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 5px;
+	color: #333;
+	background-color: transparent;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+/* HTML Tags */
+
+a
+{
+}
+
+a:hover
+{
+}
+
+hr
+{
+  border: 0px;
+	height: 1px;
+}
+
+
+/*button stuff*/
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: 0;
+}
+
+a:focus {
+  outline: 0;
+}
+
+ul, li {
+  list-style: none;
+}
+
+#buttons1 {
+  float: left;
+  margin: 0px;
+  position: relative;
+	left:71px;
+  top: 94px;
+  width: 858px;
+  height: 43px;
+  background: url(../images/button_area.png) 0 0 no-repeat;
+}
+	#buttons1 li a {
+	  position: absolute;
+	  text-decoration: none;
+	  background: url(../images/button_hover.png) 858px 0 no-repeat;
+	}
+	  /*IE trigger*/
+	#buttons1 li a:hover {
+  	  visibility: visible;
+	}
+
+	a#main {
+  	  width: 79px; /*how much it draws*/
+  	  height: 43px;
+	  top: 0px;   /*where gets drawn*/
+	  left: 270px;
+	}
+	a#main:hover, a#main:focus, a#main:active {
+  	  background-position: -270px 0px;
+	}
+
+
+	a#blog {
+  	  width: 79px;
+  	  height: 43px;
+ 	    top: 0px;
+  	  left: 350px;
+	}
+	a#blog:hover, a#blog:focus, a#blog:active {
+	  background-position: -350px 0px;
+	}
+
+
+	a#about {
+  	  width: 79px;
+  	  height: 43px;
+  	  top: 0px;
+  	  left: 430px;
+	}
+	a#about:hover, a#about:focus, a#about:active {
+  	  background-position: -430px 0px;
+	}
+
+	a#contact {
+  	  width: 79px;
+  	  height: 43px;
+  	  top: 0px;
+  	  left: 510px;
+	}
+	a#contact:hover, a#contact:focus, a#contact:active {
+	  background-position: -510px 0px;
+	}
+
+
+h1, p {
+  margin: 10px 0 2px 50px;
+}

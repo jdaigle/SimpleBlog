@@ -30,14 +30,50 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SQLite|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SQLITE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Centro.Core, Version=0.1.3536.25362, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Centro.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Centro.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Centro.MVC.dll</HintPath>
+    </Reference>
+    <Reference Include="Centro.NHibernateUtils, Version=0.1.3536.29750, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Centro.NHibernateUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=1.0.0.593, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\fluent-NHibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="OpenEntity.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\OpenEntity.Core.dll</HintPath>
+      <HintPath>..\lib\fluent-NHibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\fluent-NHibernate\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Linq, Version=1.0.0.4000, Culture=neutral, PublicKeyToken=444cf6a87fdab271, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NHibernate.Linq\NHibernate.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.5.2.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -46,6 +82,10 @@
     </Reference>
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.65.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\sqlite\System.Data.SQLite.DLL</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq">
@@ -63,6 +103,19 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\RequiresSSLAttribute.cs" />
+    <Compile Include="ActionFilters\RequireTransactionAttribute.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Models\Domain\Mapping\ProjectCategoryMap.cs" />
+    <Compile Include="Models\Domain\Mapping\ProjectImageMap.cs" />
+    <Compile Include="Models\Domain\ProjectCategory.cs" />
+    <Compile Include="Models\Domain\ProjectImage.cs" />
+    <Compile Include="Models\Domain\Repositories\Interfaces\IProjectRepository.cs" />
+    <Compile Include="Models\Domain\Repositories\IRepository.cs" />
+    <Compile Include="Models\Domain\Repositories\Concrete\ProjectRepository.cs" />
+    <Compile Include="Models\Domain\Repositories\RepositoryBase.cs" />
+    <Compile Include="Models\View\ProjectListing.cs" />
+    <Compile Include="MVCConfiguration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\StaticController.cs" />
@@ -76,9 +129,9 @@
     <Compile Include="Html\ImageHelper.cs" />
     <Compile Include="Html\Markdown.cs" />
     <Compile Include="Html\ViewExtensions.cs" />
-    <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\Config\ArticleMapping.cs" />
-    <Compile Include="Models\Repositories\ArticleRepository.cs" />
+    <Compile Include="Models\Domain\Mapping\ProjectMap.cs" />
+    <Compile Include="Models\Domain\Project.cs" />
+    <Compile Include="Mvc\ImageResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4MVC.cs">
       <AutoGen>True</AutoGen>
@@ -87,12 +140,31 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\back_button.png" />
+    <Content Include="Content\next_button.png" />
+    <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="images\background_strip.png" />
+    <Content Include="images\background_strip_blog.png" />
+    <Content Include="images\body_cont.png" />
+    <Content Include="images\body_top.png" />
+    <Content Include="images\body_top_blog.png" />
+    <Content Include="images\button_area.png" />
+    <Content Include="images\button_hover.png" />
+    <Content Include="images\comment_swoosh.png" />
+    <Content Include="images\externalpage.gif" />
+    <Content Include="images\footer.png" />
+    <Content Include="images\footer_background.png" />
+    <Content Include="images\header_empty.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\swoosh.png" />
+    <Content Include="index.html" />
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Articles\Create.aspx" />
     <Content Include="Views\Articles\Details.aspx" />
     <Content Include="Views\Articles\List.aspx" />
+    <Content Include="Views\Projects\List.aspx" />
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
@@ -103,6 +175,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
+    <Content Include="css\projectsListing.css" />
+    <Content Include="Views\Shared\Site.Master" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />

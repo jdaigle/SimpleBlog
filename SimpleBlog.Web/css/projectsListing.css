@@ -1,0 +1,68 @@
+﻿.widecontent
+{
+	padding: 0px 80px;
+}
+
+#allProjectThumbnails
+{
+	float: left;
+	width: 255px;
+	border-right: solid 1px black;
+}
+
+.projectThumbnails
+{
+	display: table;
+}
+
+.thumbnailRow
+{
+	display: table-row;
+}
+
+.projectThumbnail
+{
+	padding-right: 10px;
+	padding-bottom: 10px;
+	display: table-cell;
+}
+
+.categoryName
+{
+	font-weight: bold;
+}
+
+#projectDetails
+{
+	padding-left: 25px;
+	margin-left: 255px;
+}
+
+
+.backButton
+{
+	vertical-align:top;
+	display: inline;
+}
+
+.nextButton
+{
+	vertical-align:top;
+	display: inline;
+}
+
+.projectImage
+{
+	display: inline-block;
+	width: 405px;
+}
+
+.projectImageTitle
+{
+	display:block;
+	font-weight: bold;
+}
+
+.projectImageCaption
+{
+}
