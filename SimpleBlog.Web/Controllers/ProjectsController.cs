@@ -8,10 +8,10 @@ using SimpleBlog.Web.ActionFilters;
 using SimpleBlog.Web.Models.View;
 using SimpleBlog.Web.Mvc;
 using System.Drawing.Imaging;
+using SimpleBlog.Web.Models.Domain;
 
 namespace SimpleBlog.Web.Controllers
 {
-    [RequireTransaction]
     public partial class ProjectsController : Controller
     {
         private readonly IProjectRepository projectRepository;
@@ -82,6 +82,87 @@ namespace SimpleBlog.Web.Controllers
                 Image = image.FullSize,
                 ImageFormat = ImageFormat.Png,
             };
+        }
+
+        [Authorize]
+        public virtual ViewResult Admin()
+        {
+            var categories = projectRepository.GetAllCategories().ToList();
+            return View(new AdminDto
+            {
+                AllCategories = categories,
+            });
+        }
+
+        [Authorize]
+        [RequireTransaction]
+        public virtual RedirectToRouteResult AddCategory(string name)
+        {
+            projectRepository.CreateCategory(name);
+            return RedirectToAction(MVC.Projects.Admin());
+        }
+
+        [Authorize]
+        [RequireTransaction]
+        public virtual RedirectToRouteResult DeleteCategory(int id)
+        {
+            projectRepository.DeleteCategoryById(id);
+            return RedirectToAction(MVC.Projects.Admin());
+        }
+
+        [Authorize]
+        public virtual ViewResult EditCategory(int id)
+        {
+            return View(projectRepository.GetCategoryById(id));
+        }
+
+        [Authorize]
+        [RequireTransaction]
+        public virtual RedirectToRouteResult RenameCategory(int id, string name)
+        {
+            projectRepository.RenameCategory(id, name);
+            return RedirectToAction(MVC.Projects.Admin());
+        }
+
+
+        [Authorize]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public virtual ViewResult EditProject(int id)
+        {
+            ViewData["Categories"] = projectRepository.GetAllCategories().ToList();
+            return View(projectRepository.GetProjectById(id));
+        }
+
+        [Authorize]
+        [RequireTransaction]
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateInput(false)]
+        public virtual RedirectToRouteResult EditProject(int id, string name, string description, int categoryId)
+        {
+            var project = projectRepository.GetProjectById(id);
+            project.Name = name;
+            project.Description = description;
+            project.Category = projectRepository.GetCategoryById(categoryId);
+            projectRepository.Save(ref project);
+            return RedirectToAction(MVC.Projects.Admin());
+        }
+
+        [Authorize]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public virtual ViewResult CreateProject()
+        {
+            ViewData["Categories"] = projectRepository.GetAllCategories().ToList();
+            return View();
+        }
+
+        [Authorize]
+        [RequireTransaction]
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateInput(false)]
+        public virtual RedirectToRouteResult CreateProject(string name, string description, int categoryId)
+        {
+            projectRepository.CreateProject(name, description, projectRepository.GetCategoryById(categoryId));
+            return RedirectToAction(MVC.Projects.Admin());
         }
     }
 }

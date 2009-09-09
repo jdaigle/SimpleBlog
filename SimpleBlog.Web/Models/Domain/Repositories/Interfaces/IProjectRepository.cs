@@ -11,5 +11,15 @@ namespace SimpleBlog.Web.Models.Domain.Repositories.Interfaces
         IQueryable<Project> GetAllProjectsByCategory(ProjectCategory category);
         ProjectImage GetImageById(int id);
         Project GetProjectById(int id);
+
+        ProjectCategory CreateCategory(string name);
+
+        void DeleteCategoryById(int id);
+
+        ProjectCategory GetCategoryById(int id);
+
+        ProjectCategory RenameCategory(int id, string name);
+
+        Project CreateProject(string name, string description, ProjectCategory projectCategory);
     }
 }

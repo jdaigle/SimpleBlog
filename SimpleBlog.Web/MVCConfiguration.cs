@@ -3,18 +3,13 @@ using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Centro.MVC.Controllers;
+using Centro.NHibernateUtils;
+using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using SimpleBlog.Web.Controllers;
+using SimpleBlog.Web.Models.Domain;
 using StructureMap;
 using StructureMap.Attributes;
-using NHibernate.Dialect;
-using System.Data.SqlClient;
-using System.IO;
-using NHibernate;
-using NHibernate.Linq;
-using Centro.NHibernateUtils;
-using SimpleBlog.Web.Models.Domain;
-using System.Linq;
 
 namespace SimpleBlog.Web
 {
@@ -26,12 +21,6 @@ namespace SimpleBlog.Web
 
             routes.MapRoute(
                 string.Empty,
-                "articles/list/{page}",
-                new { controller = MVC.Articles.Name, action = MVC.Articles.Actions.List, page = 0 }
-                );
-
-            routes.MapRoute(
-                string.Empty,
                 "projects/list/{projectId}",
                 new { controller = MVC.Projects.Name, action = MVC.Projects.Actions.List, projectId = 0 }
                 );
@@ -39,7 +28,7 @@ namespace SimpleBlog.Web
             routes.MapRoute(
                 string.Empty,
                 "{controller}/{action}/{id}",
-                new { controller = MVC.Projects.Name, action = MVC.Projects.Actions.Index, id = "" }
+                new { controller = MVC.Static.Name, action = MVC.Static.Actions.Index, id = "" }
             );
 
         }

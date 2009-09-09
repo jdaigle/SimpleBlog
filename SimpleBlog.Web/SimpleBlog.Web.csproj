@@ -114,10 +114,10 @@
     <Compile Include="Models\Domain\Repositories\IRepository.cs" />
     <Compile Include="Models\Domain\Repositories\Concrete\ProjectRepository.cs" />
     <Compile Include="Models\Domain\Repositories\RepositoryBase.cs" />
+    <Compile Include="Models\View\AdminDto.cs" />
     <Compile Include="Models\View\ProjectListing.cs" />
     <Compile Include="MVCConfiguration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\StaticController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -161,9 +161,6 @@
     <Content Include="images\swoosh.png" />
     <Content Include="index.html" />
     <Content Include="Views\Account\LogOn.aspx" />
-    <Content Include="Views\Articles\Create.aspx" />
-    <Content Include="Views\Articles\Details.aspx" />
-    <Content Include="Views\Articles\List.aspx" />
     <Content Include="Views\Projects\List.aspx" />
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
@@ -175,7 +172,12 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
+    <Content Include="css\mvc.css" />
     <Content Include="css\projectsListing.css" />
+    <Content Include="Views\Projects\Admin.aspx" />
+    <Content Include="Views\Projects\CreateProject.aspx" />
+    <Content Include="Views\Projects\EditCategory.aspx" />
+    <Content Include="Views\Projects\EditProject.aspx" />
     <Content Include="Views\Shared\Site.Master" />
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,6 @@ using T4MVC;
 [CompilerGenerated]
 public static class MVC {
     public static SimpleBlog.Web.Controllers.AccountController Account = new T4MVC_AccountController();
-    public static SimpleBlog.Web.Controllers.ArticlesController Articles = new T4MVC_ArticlesController();
     public static SimpleBlog.Web.Controllers.ProjectsController Projects = new T4MVC_ProjectsController();
     public static SimpleBlog.Web.Controllers.StaticController Static = new T4MVC_StaticController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
@@ -64,60 +63,6 @@ namespace SimpleBlog.Web.Controllers {
     }
 }
 namespace SimpleBlog.Web.Controllers {
-    public partial class ArticlesController {
-
-        [CompilerGenerated]
-        protected ArticlesController(_Dummy d) { }
-
-        protected RedirectToRouteResult RedirectToAction(ActionResult result) {
-            var callInfo = (IT4MVCActionResult)result;
-            return RedirectToRoute(callInfo.RouteValues);
-        }
-
-        [NonAction]
-        public ActionResult List() {
-            return new T4MVC_ActionResult(Name, Actions.List);
-        }
-
-        [NonAction]
-        public ActionResult Details() {
-            return new T4MVC_ActionResult(Name, Actions.Details);
-        }
-
-        [NonAction]
-        public ActionResult Edit() {
-            return new T4MVC_ActionResult(Name, Actions.Edit);
-        }
-
-
-        [CompilerGenerated]
-        public readonly string Name = "Articles";
-
-        static readonly _Actions s_actions = new _Actions();
-        [CompilerGenerated]
-        public _Actions Actions { get { return s_actions; } }
-        [CompilerGenerated]
-        public class _Actions {
-            public readonly string Index = "Index";
-            public readonly string List = "List";
-            public readonly string Details = "Details";
-            public readonly string Create = "Create";
-            public readonly string Edit = "Edit";
-        }
-
-
-        static readonly _Views s_views = new _Views();
-        [CompilerGenerated]
-        public _Views Views { get { return s_views; } }
-        [CompilerGenerated]
-        public class _Views {
-            public readonly string Create = "Create";
-            public readonly string Details = "Details";
-            public readonly string List = "List";
-        }
-    }
-}
-namespace SimpleBlog.Web.Controllers {
     public partial class ProjectsController {
 
         [CompilerGenerated]
@@ -143,6 +88,31 @@ namespace SimpleBlog.Web.Controllers {
             return new T4MVC_ActionResult(Name, Actions.Image);
         }
 
+        [NonAction]
+        public ActionResult AddCategory() {
+            return new T4MVC_ActionResult(Name, Actions.AddCategory);
+        }
+
+        [NonAction]
+        public ActionResult DeleteCategory() {
+            return new T4MVC_ActionResult(Name, Actions.DeleteCategory);
+        }
+
+        [NonAction]
+        public ActionResult EditCategory() {
+            return new T4MVC_ActionResult(Name, Actions.EditCategory);
+        }
+
+        [NonAction]
+        public ActionResult RenameCategory() {
+            return new T4MVC_ActionResult(Name, Actions.RenameCategory);
+        }
+
+        [NonAction]
+        public ActionResult EditProject() {
+            return new T4MVC_ActionResult(Name, Actions.EditProject);
+        }
+
 
         [CompilerGenerated]
         public readonly string Name = "Projects";
@@ -156,6 +126,13 @@ namespace SimpleBlog.Web.Controllers {
             public readonly string List = "List";
             public readonly string Thumbnail = "Thumbnail";
             public readonly string Image = "Image";
+            public readonly string Admin = "Admin";
+            public readonly string AddCategory = "AddCategory";
+            public readonly string DeleteCategory = "DeleteCategory";
+            public readonly string EditCategory = "EditCategory";
+            public readonly string RenameCategory = "RenameCategory";
+            public readonly string EditProject = "EditProject";
+            public readonly string CreateProject = "CreateProject";
         }
 
 
@@ -164,6 +141,10 @@ namespace SimpleBlog.Web.Controllers {
         public _Views Views { get { return s_views; } }
         [CompilerGenerated]
         public class _Views {
+            public readonly string Admin = "Admin";
+            public readonly string CreateProject = "CreateProject";
+            public readonly string EditCategory = "EditCategory";
+            public readonly string EditProject = "EditProject";
             public readonly string List = "List";
         }
     }
@@ -241,39 +222,6 @@ namespace T4MVC {
 
     }
     [CompilerGenerated]
-    public class T4MVC_ArticlesController: SimpleBlog.Web.Controllers.ArticlesController {
-        public T4MVC_ArticlesController() : base(_Dummy.Instance) { }
-
-        public override System.Web.Mvc.ActionResult Index() {
-            var callInfo = new T4MVC_ActionResult("Articles", Actions.Index);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult List(int page) {
-            var callInfo = new T4MVC_ActionResult("Articles", Actions.List);
-            callInfo.RouteValues.Add("page", page);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult Details(int id) {
-            var callInfo = new T4MVC_ActionResult("Articles", Actions.Details);
-            callInfo.RouteValues.Add("id", id);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult Create() {
-            var callInfo = new T4MVC_ActionResult("Articles", Actions.Create);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult Edit(int id) {
-            var callInfo = new T4MVC_ActionResult("Articles", Actions.Edit);
-            callInfo.RouteValues.Add("id", id);
-            return callInfo;
-        }
-
-    }
-    [CompilerGenerated]
     public class T4MVC_ProjectsController: SimpleBlog.Web.Controllers.ProjectsController {
         public T4MVC_ProjectsController() : base(_Dummy.Instance) { }
 
@@ -300,18 +248,76 @@ namespace T4MVC {
             return callInfo;
         }
 
+        public override System.Web.Mvc.ViewResult Admin() {
+            var callInfo = new T4MVC_ViewResult("Projects", Actions.Admin);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.RedirectToRouteResult AddCategory(string name) {
+            var callInfo = new T4MVC_RedirectToRouteResult("Projects", Actions.AddCategory);
+            callInfo.RouteValues.Add("name", name);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.RedirectToRouteResult DeleteCategory(int id) {
+            var callInfo = new T4MVC_RedirectToRouteResult("Projects", Actions.DeleteCategory);
+            callInfo.RouteValues.Add("id", id);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ViewResult EditCategory(int id) {
+            var callInfo = new T4MVC_ViewResult("Projects", Actions.EditCategory);
+            callInfo.RouteValues.Add("id", id);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.RedirectToRouteResult RenameCategory(int id, string name) {
+            var callInfo = new T4MVC_RedirectToRouteResult("Projects", Actions.RenameCategory);
+            callInfo.RouteValues.Add("id", id);
+            callInfo.RouteValues.Add("name", name);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ViewResult EditProject(int id) {
+            var callInfo = new T4MVC_ViewResult("Projects", Actions.EditProject);
+            callInfo.RouteValues.Add("id", id);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.RedirectToRouteResult EditProject(int id, string name, string description, int categoryId) {
+            var callInfo = new T4MVC_RedirectToRouteResult("Projects", Actions.EditProject);
+            callInfo.RouteValues.Add("id", id);
+            callInfo.RouteValues.Add("name", name);
+            callInfo.RouteValues.Add("description", description);
+            callInfo.RouteValues.Add("categoryId", categoryId);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ViewResult CreateProject() {
+            var callInfo = new T4MVC_ViewResult("Projects", Actions.CreateProject);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.RedirectToRouteResult CreateProject(string name, string description, int categoryId) {
+            var callInfo = new T4MVC_RedirectToRouteResult("Projects", Actions.CreateProject);
+            callInfo.RouteValues.Add("name", name);
+            callInfo.RouteValues.Add("description", description);
+            callInfo.RouteValues.Add("categoryId", categoryId);
+            return callInfo;
+        }
+
     }
     [CompilerGenerated]
     public class T4MVC_StaticController: SimpleBlog.Web.Controllers.StaticController {
         public T4MVC_StaticController() : base(_Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult Index() {
-            var callInfo = new T4MVC_ActionResult("Static", Actions.Index);
+        public override System.Web.Mvc.RedirectToRouteResult Index() {
+            var callInfo = new T4MVC_RedirectToRouteResult("Static", Actions.Index);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Projects() {
-            var callInfo = new T4MVC_ActionResult("Static", Actions.Projects);
+        public override System.Web.Mvc.RedirectToRouteResult Projects() {
+            var callInfo = new T4MVC_RedirectToRouteResult("Static", Actions.Projects);
             return callInfo;
         }
 
@@ -457,6 +463,7 @@ namespace Links {
     public static class @css {
         public static string Url() { return VirtualPathUtility.ToAbsolute("~/css"); }
         public static string Url(string fileName) { return VirtualPathUtility.ToAbsolute("~/css/" + fileName); }
+        public static readonly string mvc_css = Url("mvc.css");
         public static readonly string projectsListing_css = Url("projectsListing.css");
         public static readonly string style_css = Url("style.css");
     }

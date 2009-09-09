@@ -6,7 +6,7 @@
 #allProjectThumbnails
 {
 	float: left;
-	width: 255px;
+	width: 235px;
 	border-right: solid 1px black;
 }
 
@@ -35,19 +35,19 @@
 #projectDetails
 {
 	padding-left: 25px;
-	margin-left: 255px;
+	margin-left: 250px;
 }
 
 
 .backButton
 {
-	vertical-align:top;
+	vertical-align: top;
 	display: inline;
 }
 
 .nextButton
 {
-	vertical-align:top;
+	vertical-align: top;
 	display: inline;
 }
 
@@ -59,10 +59,13 @@
 
 .projectImageTitle
 {
-	display:block;
+	display: block;
 	font-weight: bold;
+	font-style: italic;
+	text-align: center;
 }
 
 .projectImageCaption
 {
+	text-align: center;
 }

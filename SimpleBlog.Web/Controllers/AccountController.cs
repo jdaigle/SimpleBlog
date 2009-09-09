@@ -54,7 +54,7 @@ namespace SimpleBlog.Web.Controllers
             }
             if (!FormsAuthentication.Authenticate(userName, password))
             {
-                ModelState.AddModelError("_FORM", "The password provided is incorrect.");
+                ModelState.AddModelError("password", "The password provided is incorrect.");
             }
             return ModelState.IsValid;
         }

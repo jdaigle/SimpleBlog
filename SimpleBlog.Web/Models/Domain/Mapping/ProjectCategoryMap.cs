@@ -16,6 +16,11 @@ namespace SimpleBlog.Web.Models.Domain.Mapping
             Map(x => x.Name)
                 .Not.Nullable()
                 .Length(15);
+            HasMany(x => x.Projects)
+                .KeyColumn("CategoryId")
+                .LazyLoad()
+                .Inverse()
+                .Cascade.All();
         }
     }
 }

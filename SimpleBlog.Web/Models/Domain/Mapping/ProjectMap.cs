@@ -25,6 +25,7 @@ namespace SimpleBlog.Web.Models.Domain.Mapping
                 .Cascade.None();
             HasMany(x => x.Images)
                 .KeyColumn("ProjectId")
+                .LazyLoad()
                 .Inverse()
                 .Cascade.All();
         }

@@ -34,5 +34,42 @@ namespace SimpleBlog.Web.Models.Domain.Repositories
         {
             return Linq().Where(x => x.Id == id).FirstOrDefault();
         }
+
+        public ProjectCategory CreateCategory(string name)
+        {
+            var newCategory = new ProjectCategory
+            {
+                Name = name,
+            };
+            return (ProjectCategory)Session.SaveOrUpdateCopy(newCategory);
+        }
+
+        public void DeleteCategoryById(int id)
+        {
+            Session.Delete(GetCategoryById(id));
+        }
+
+        public ProjectCategory GetCategoryById(int id)
+        {
+            return Session.Linq<ProjectCategory>().Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public ProjectCategory RenameCategory(int id, string name)
+        {
+            var category = GetCategoryById(id);
+            category.Name = name;
+            return (ProjectCategory)Session.SaveOrUpdateCopy(category);
+        }
+
+        public Project CreateProject(string name, string description, ProjectCategory projectCategory)
+        {
+            var project = new Project
+            {
+                Name = name,
+                Description = description,
+                Category = projectCategory,
+            };
+            return (Project)Session.SaveOrUpdateCopy(project);
+        }
     }
 }

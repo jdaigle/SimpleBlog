@@ -9,14 +9,14 @@ namespace SimpleBlog.Web.Controllers
 {
     public partial class StaticController : Controller
     {
-        public virtual ActionResult Index()
+        public virtual RedirectToRouteResult Index()
         {
-            return Redirect("/index.html");
+            return RedirectToAction(MVC.Projects.Index());
         }
 
-        public virtual ActionResult Projects()
+        public virtual RedirectToRouteResult Projects()
         {
-            return Redirect("/index.html");
+            return RedirectToAction(MVC.Projects.Index());
         }
     }
 }

@@ -28,7 +28,7 @@
             <div class="projectImage">
                 <img src='<%= Url.Action(MVC.Projects.Image(Model.SelectedProject.Images[0].Id)) %>' alt="Project" />
                 <span class="projectImageTitle"><%= Html.Encode(Model.SelectedProject.Name) %></span>
-                <span class="projectImageCaption"><%= Html.Encode(Model.SelectedProject.Description) %></span>
+                <span class="projectImageCaption"><%= Html.Markdown(Model.SelectedProject.Description) %></span>
             </div>
             <%= Html.ImageLink(MVC.Projects.List(Model.NextId), Links.Content.next_button_png, "Next", new { @class = "nextButton" }, null)%>
         </div>
