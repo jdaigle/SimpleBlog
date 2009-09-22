@@ -39,16 +39,14 @@ namespace SimpleBlog.Web
         public static void InitializeIoCAndDataAccess()
         {
             var mappingAssemblies = new List<Assembly> { typeof(SimpleBlog.Web.Models.Domain.Mapping.ProjectMap).Assembly };
-
-            NHibernate.Cfg.Configuration cfg = null;
-
+#if SQLITE
+            var nhibernateRegistry = SQLiteBuilder.CreateRegistry("SimpleBlog", mappingAssemblies, InstanceScope.HttpContext);
+#else
+            var nhibernateRegistry = MSSqlBuilder.CreateRegistry("SimpleBlog", mappingAssemblies, InstanceScope.HttpContext);
+#endif
             ObjectFactory.Initialize(i =>
             {
-#if SQLITE
-                cfg = Centro.NHibernateUtils.Configuration.SetupSQLiteDataAccess(i, InstanceScope.HttpContext, mappingAssemblies, "SimpleBlog");
-#else
-                cfg = Centro.NHibernateUtils.Configuration.ConfigureMsSqlDataAccess(i, InstanceScope.HttpContext, mappingAssemblies, "SimpleBlog");
-#endif
+                i.AddRegistry(nhibernateRegistry);
 
                 i.Scan(s =>
                 {
@@ -71,7 +69,7 @@ namespace SimpleBlog.Web
             ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory());
 
 #if SQLITE
-            SQLiteUtil.GenerateSchema(cfg, ObjectFactory.GetInstance<ISession>());
+            SQLiteUtil.GenerateSchema(nhibernateRegistry.Configuration, ObjectFactory.GetInstance<ISession>());
             SQLiteUtil.InitializeData(SQLiteTestData, ObjectFactory.GetInstance<ISession>());
             ObjectFactory.GetInstance<ISession>().Clear();
 #endif
@@ -85,7 +83,7 @@ namespace SimpleBlog.Web
         private static void SQLiteTestData()
         {
             var session = ObjectFactory.GetInstance<ISession>();
-            
+
             // Project Categories
             var digitalWorksCategory = new ProjectCategory
             {
@@ -119,8 +117,8 @@ namespace SimpleBlog.Web
                 };
                 var project = new Project
                 {
-                    Name = "Digital Works Project "+ i,
-                    Description = "This is my " +i+"th digital works project",
+                    Name = "Digital Works Project " + i,
+                    Description = "This is my " + i + "th digital works project",
                     Category = digitalWorksCategory,
                     Thumbnail = thumbnail,
                     Image = image,

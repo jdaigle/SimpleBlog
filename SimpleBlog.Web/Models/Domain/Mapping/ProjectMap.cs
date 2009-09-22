@@ -22,14 +22,17 @@ namespace SimpleBlog.Web.Models.Domain.Mapping
             References(x => x.Category)
                 .Not.Nullable()
                 .Column("CategoryId")
+                .ForeignKey("FK_Project_ProjectCategory")
                 .Cascade.None();
             References(x => x.Thumbnail)
                 .Nullable()
                 .Column("Thumbnail")
+                .ForeignKey("FK_Project_ThumbnailImage")
                 .Cascade.All();
             References(x => x.Image)
                 .Nullable()
                 .Column("Image")
+                .ForeignKey("FK_Project_Image")
                 .Cascade.All();
         }
     }
