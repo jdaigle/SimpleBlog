@@ -13,8 +13,8 @@
                 <div class="thumbnailRow">
                     <% foreach (var project in Model[category].Skip(i).Take(5)) { %>
                     <div class="projectThumbnail">
-                        <% if (project.Images.Count > 0) { %>
-                        <%= Html.ImageLink(MVC.Projects.List(project.Id), Url.Action(MVC.Projects.Thumbnail(project.Images[0].Id)), project.Name, new { title = project.Name}, null) %>
+                        <% if (project.Thumbnail != null) { %>
+                        <%= Html.ImageLink(MVC.Projects.List(project.Id), Url.Action(MVC.Projects.Image(project.Thumbnail.Id)), project.Name, new { title = project.Name}, null) %>
                         <% } %>
                     </div>
                     <% } %>
@@ -26,7 +26,7 @@
         <div id="projectDetails">
             <%= Html.ImageLink(MVC.Projects.List(Model.BackId), Links.Content.back_button_png, "Back", new { @class = "backButton" }, null)%>
             <div class="projectImage">
-                <img src='<%= Url.Action(MVC.Projects.Image(Model.SelectedProject.Images[0].Id)) %>' alt="Project" />
+                <img src='<%= Url.Action(MVC.Projects.Image(Model.SelectedProject.Image.Id)) %>' alt="Project" />
                 <span class="projectImageTitle"><%= Html.Encode(Model.SelectedProject.Name) %></span>
                 <span class="projectImageCaption"><%= Html.Markdown(Model.SelectedProject.Description) %></span>
             </div>

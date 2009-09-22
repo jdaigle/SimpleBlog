@@ -5,7 +5,6 @@ using System.Web.Routing;
 using Centro.MVC.Controllers;
 using Centro.NHibernateUtils;
 using NHibernate;
-using NHibernate.Tool.hbm2ddl;
 using SimpleBlog.Web.Controllers;
 using SimpleBlog.Web.Models.Domain;
 using StructureMap;
@@ -18,6 +17,10 @@ namespace SimpleBlog.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
+            routes.IgnoreRoute("Content/{*resource}");
+            routes.IgnoreRoute("Scripts/{*resource}");
+            routes.IgnoreRoute("Images/{*resource}");
 
             routes.MapRoute(
                 string.Empty,
@@ -74,7 +77,7 @@ namespace SimpleBlog.Web
 #endif
 
 #if DEBUG
-            new SchemaExport(cfg).SetOutputFile("SimpleBlogSchema.sql").Create(false, false);
+            //new SchemaExport(cfg).SetOutputFile("SimpleBlogSchema.sql").Create(false, false);
 #endif
         }
 
@@ -82,7 +85,6 @@ namespace SimpleBlog.Web
         private static void SQLiteTestData()
         {
             var session = ObjectFactory.GetInstance<ISession>();
-
             
             // Project Categories
             var digitalWorksCategory = new ProjectCategory
@@ -99,46 +101,52 @@ namespace SimpleBlog.Web
 
             // Projects
 
-            var thumbnail1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(@"C:\Users\Public\Pictures\website_content\glassinitial_thumb.jpg");
-            var thumbnail2 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(@"C:\Users\Public\Pictures\website_content\glow_thumb.jpg");
+            var thumbnail1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(@"C:\Users\Public\Pictures\website_size_update\glassinitial_thumb_38.jpg");
+            var thumbnail2 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(@"C:\Users\Public\Pictures\website_size_update\glow_thumb_38.jpg");
             var fullsize1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(@"C:\Users\Public\Pictures\website_content\glassinitial_main.jpg");
             var fullsize2 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(@"C:\Users\Public\Pictures\website_content\glow_main.jpg");
 
 
             for (int i = 0; i < 16; i++)
             {
+                var thumbnail = new ProjectImage
+                {
+                    Data = thumbnail1,
+                };
+                var image = new ProjectImage
+                {
+                    Data = fullsize1,
+                };
                 var project = new Project
                 {
                     Name = "Digital Works Project "+ i,
                     Description = "This is my " +i+"th digital works project",
                     Category = digitalWorksCategory,
+                    Thumbnail = thumbnail,
+                    Image = image,
                 };
                 project = (Project)session.SaveOrUpdateCopy(project);
-                var image = new ProjectImage
-                {
-                    Project = project,
-                    Thumbnail = thumbnail1,
-                    FullSize = fullsize1,
-                };
-                session.SaveOrUpdateCopy(image);
             }
 
             for (int i = 0; i < 10; i++)
             {
+                var thumbnail = new ProjectImage
+                {
+                    Data = thumbnail2,
+                };
+                var image = new ProjectImage
+                {
+                    Data = fullsize2,
+                };
                 var project = new Project
                 {
                     Name = "Crafts Project " + i,
                     Description = "This is my " + i + "th crafts project",
                     Category = craftsCategory,
+                    Thumbnail = thumbnail,
+                    Image = image,
                 };
                 project = (Project)session.SaveOrUpdateCopy(project);
-                var image = new ProjectImage
-                {
-                    Project = project,
-                    Thumbnail = thumbnail2,
-                    FullSize = fullsize2,
-                };
-                session.SaveOrUpdateCopy(image);
             }
         }
     }

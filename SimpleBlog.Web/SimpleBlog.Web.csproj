@@ -51,6 +51,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Centro.NHibernateUtils.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah, Version=1.1.11517.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Elmah\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=1.0.0.593, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\fluent-NHibernate\FluentNHibernate.dll</HintPath>
@@ -105,6 +109,7 @@
   <ItemGroup>
     <Compile Include="ActionFilters\RequiresSSLAttribute.cs" />
     <Compile Include="ActionFilters\RequireTransactionAttribute.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Models\Domain\Mapping\ProjectCategoryMap.cs" />
     <Compile Include="Models\Domain\Mapping\ProjectImageMap.cs" />
@@ -174,6 +179,7 @@
     </None>
     <Content Include="css\mvc.css" />
     <Content Include="css\projectsListing.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Views\Projects\Admin.aspx" />
     <Content Include="Views\Projects\CreateProject.aspx" />
     <Content Include="Views\Projects\EditCategory.aspx" />
@@ -182,6 +188,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

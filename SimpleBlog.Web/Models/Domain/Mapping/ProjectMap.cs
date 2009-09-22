@@ -23,10 +23,13 @@ namespace SimpleBlog.Web.Models.Domain.Mapping
                 .Not.Nullable()
                 .Column("CategoryId")
                 .Cascade.None();
-            HasMany(x => x.Images)
-                .KeyColumn("ProjectId")
-                .LazyLoad()
-                .Inverse()
+            References(x => x.Thumbnail)
+                .Nullable()
+                .Column("Thumbnail")
+                .Cascade.All();
+            References(x => x.Image)
+                .Nullable()
+                .Column("Image")
                 .Cascade.All();
         }
     }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Drawing.Imaging;
 using System.Linq;
-using System.Web;
-using SimpleBlog.Web.Models.Domain.Repositories.Interfaces;
 using System.Web.Mvc;
 using SimpleBlog.Web.ActionFilters;
+using SimpleBlog.Web.Models.Domain.Repositories.Interfaces;
 using SimpleBlog.Web.Models.View;
 using SimpleBlog.Web.Mvc;
-using System.Drawing.Imaging;
+using System.Web;
 using SimpleBlog.Web.Models.Domain;
 
 namespace SimpleBlog.Web.Controllers
@@ -60,26 +58,14 @@ namespace SimpleBlog.Web.Controllers
             return View(projectListing);
         }
 
-        public virtual ActionResult Thumbnail(int id)
-        {
-            var image = projectRepository.GetImageById(id);
-            if (image == null || image.Thumbnail == null)
-                return new EmptyResult();
-            return new ImageResult
-            {
-                Image = image.Thumbnail,
-                ImageFormat = ImageFormat.Png,
-            };
-        }
-
         public virtual ActionResult Image(int id)
         {
             var image = projectRepository.GetImageById(id);
-            if (image == null || image.FullSize == null)
+            if (image.Data == null)
                 return new EmptyResult();
             return new ImageResult
             {
-                Image = image.FullSize,
+                Image = image.Data,
                 ImageFormat = ImageFormat.Png,
             };
         }
@@ -163,6 +149,38 @@ namespace SimpleBlog.Web.Controllers
         {
             projectRepository.CreateProject(name, description, projectRepository.GetCategoryById(categoryId));
             return RedirectToAction(MVC.Projects.Admin());
+        }
+
+        [Authorize]
+        [RequireTransaction]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public virtual RedirectToRouteResult ChangeProjectThumbnail(int id, HttpPostedFileBase image)
+        {
+            var project = projectRepository.GetProjectById(id);            
+            if (image != null)
+            {
+                if (project.Thumbnail == null)
+                    project.Thumbnail = new ProjectImage();
+                project.Thumbnail.Data = new System.Drawing.Bitmap(image.InputStream);
+                projectRepository.Save(ref project);
+            }
+            return RedirectToAction(MVC.Projects.EditProject(id));
+        }
+
+        [Authorize]
+        [RequireTransaction]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public virtual RedirectToRouteResult ChangeProjectImage(int id, HttpPostedFileBase image)
+        {
+            var project = projectRepository.GetProjectById(id);
+            if (image != null)
+            {
+                if (project.Image == null)
+                    project.Image = new ProjectImage();
+                project.Image.Data = new System.Drawing.Bitmap(image.InputStream);
+                projectRepository.Save(ref project);
+            }
+            return RedirectToAction(MVC.Projects.EditProject(id));
         }
     }
 }

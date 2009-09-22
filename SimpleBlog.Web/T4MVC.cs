@@ -20,6 +20,7 @@ using T4MVC;
 [CompilerGenerated]
 public static class MVC {
     public static SimpleBlog.Web.Controllers.AccountController Account = new T4MVC_AccountController();
+    public static SimpleBlog.Web.Controllers.AdminController Admin = new T4MVC_AdminController();
     public static SimpleBlog.Web.Controllers.ProjectsController Projects = new T4MVC_ProjectsController();
     public static SimpleBlog.Web.Controllers.StaticController Static = new T4MVC_StaticController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
@@ -63,6 +64,40 @@ namespace SimpleBlog.Web.Controllers {
     }
 }
 namespace SimpleBlog.Web.Controllers {
+    public partial class AdminController {
+
+        public AdminController() { }
+
+        [CompilerGenerated]
+        protected AdminController(_Dummy d) { }
+
+        protected RedirectToRouteResult RedirectToAction(ActionResult result) {
+            var callInfo = (IT4MVCActionResult)result;
+            return RedirectToRoute(callInfo.RouteValues);
+        }
+
+
+        [CompilerGenerated]
+        public readonly string Name = "Admin";
+
+        static readonly _Actions s_actions = new _Actions();
+        [CompilerGenerated]
+        public _Actions Actions { get { return s_actions; } }
+        [CompilerGenerated]
+        public class _Actions {
+            public readonly string Index = "Index";
+        }
+
+
+        static readonly _Views s_views = new _Views();
+        [CompilerGenerated]
+        public _Views Views { get { return s_views; } }
+        [CompilerGenerated]
+        public class _Views {
+        }
+    }
+}
+namespace SimpleBlog.Web.Controllers {
     public partial class ProjectsController {
 
         [CompilerGenerated]
@@ -76,11 +111,6 @@ namespace SimpleBlog.Web.Controllers {
         [NonAction]
         public ActionResult List() {
             return new T4MVC_ActionResult(Name, Actions.List);
-        }
-
-        [NonAction]
-        public ActionResult Thumbnail() {
-            return new T4MVC_ActionResult(Name, Actions.Thumbnail);
         }
 
         [NonAction]
@@ -113,6 +143,16 @@ namespace SimpleBlog.Web.Controllers {
             return new T4MVC_ActionResult(Name, Actions.EditProject);
         }
 
+        [NonAction]
+        public ActionResult ChangeProjectThumbnail() {
+            return new T4MVC_ActionResult(Name, Actions.ChangeProjectThumbnail);
+        }
+
+        [NonAction]
+        public ActionResult ChangeProjectImage() {
+            return new T4MVC_ActionResult(Name, Actions.ChangeProjectImage);
+        }
+
 
         [CompilerGenerated]
         public readonly string Name = "Projects";
@@ -124,7 +164,6 @@ namespace SimpleBlog.Web.Controllers {
         public class _Actions {
             public readonly string Index = "Index";
             public readonly string List = "List";
-            public readonly string Thumbnail = "Thumbnail";
             public readonly string Image = "Image";
             public readonly string Admin = "Admin";
             public readonly string AddCategory = "AddCategory";
@@ -133,6 +172,8 @@ namespace SimpleBlog.Web.Controllers {
             public readonly string RenameCategory = "RenameCategory";
             public readonly string EditProject = "EditProject";
             public readonly string CreateProject = "CreateProject";
+            public readonly string ChangeProjectThumbnail = "ChangeProjectThumbnail";
+            public readonly string ChangeProjectImage = "ChangeProjectImage";
         }
 
 
@@ -222,6 +263,16 @@ namespace T4MVC {
 
     }
     [CompilerGenerated]
+    public class T4MVC_AdminController: SimpleBlog.Web.Controllers.AdminController {
+        public T4MVC_AdminController() : base(_Dummy.Instance) { }
+
+        public override System.Web.Mvc.RedirectToRouteResult Index() {
+            var callInfo = new T4MVC_RedirectToRouteResult("Admin", Actions.Index);
+            return callInfo;
+        }
+
+    }
+    [CompilerGenerated]
     public class T4MVC_ProjectsController: SimpleBlog.Web.Controllers.ProjectsController {
         public T4MVC_ProjectsController() : base(_Dummy.Instance) { }
 
@@ -233,12 +284,6 @@ namespace T4MVC {
         public override System.Web.Mvc.ViewResult List(int projectId) {
             var callInfo = new T4MVC_ViewResult("Projects", Actions.List);
             callInfo.RouteValues.Add("projectId", projectId);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult Thumbnail(int id) {
-            var callInfo = new T4MVC_ActionResult("Projects", Actions.Thumbnail);
-            callInfo.RouteValues.Add("id", id);
             return callInfo;
         }
 
@@ -303,6 +348,20 @@ namespace T4MVC {
             callInfo.RouteValues.Add("name", name);
             callInfo.RouteValues.Add("description", description);
             callInfo.RouteValues.Add("categoryId", categoryId);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.RedirectToRouteResult ChangeProjectThumbnail(int id, System.Web.HttpPostedFileBase image) {
+            var callInfo = new T4MVC_RedirectToRouteResult("Projects", Actions.ChangeProjectThumbnail);
+            callInfo.RouteValues.Add("id", id);
+            callInfo.RouteValues.Add("image", image);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.RedirectToRouteResult ChangeProjectImage(int id, System.Web.HttpPostedFileBase image) {
+            var callInfo = new T4MVC_RedirectToRouteResult("Projects", Actions.ChangeProjectImage);
+            callInfo.RouteValues.Add("id", id);
+            callInfo.RouteValues.Add("image", image);
             return callInfo;
         }
 

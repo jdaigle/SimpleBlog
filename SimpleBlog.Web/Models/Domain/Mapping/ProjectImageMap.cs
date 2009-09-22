@@ -13,14 +13,7 @@ namespace SimpleBlog.Web.Models.Domain.Mapping
             Table("ProjectImages");
             Id(x => x.Id)
                 .GeneratedBy.Identity();
-            References(x => x.Project)
-                .Not.Nullable()
-                .Column("ProjectId")
-                .Cascade.None();
-            Map(x => x.Thumbnail)
-                .Not.Nullable()
-                .LazyLoad();
-            Map(x => x.FullSize)
+            Map(x => x.Data)
                 .Not.Nullable()
                 .LazyLoad();
         }
