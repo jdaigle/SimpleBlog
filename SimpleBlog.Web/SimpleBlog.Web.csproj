@@ -111,6 +111,7 @@
     <Compile Include="ActionFilters\RequireTransactionAttribute.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <None Include="database\changes\001_Create_Tables.sql" />
     <Compile Include="Models\Domain\Mapping\ProjectCategoryMap.cs" />
     <Compile Include="Models\Domain\Mapping\ProjectImageMap.cs" />
     <Compile Include="Models\Domain\ProjectCategory.cs" />
@@ -171,7 +172,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Database\SampleData.sql" />
+    <None Include="database\SampleData.sql" />
     <None Include="T4MVC.settings.t4" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -24,13 +24,17 @@
             <% } %>
         </div>
         <div id="projectDetails">
+            <% if (Model.SelectedProject != null) { %>
             <%= Html.ImageLink(MVC.Projects.List(Model.BackId), Links.Content.back_button_png, "Back", new { @class = "backButton" }, null)%>
             <div class="projectImage">
-                <img src='<%= Url.Action(MVC.Projects.Image(Model.SelectedProject.Image.Id)) %>' alt="Project" />
+                <% if (Model.SelectedProject.Image != null) { %>
+                    <img src='<%= Url.Action(MVC.Projects.Image(Model.SelectedProject.Image.Id)) %>' alt="Project" />
+                <% } %>
                 <span class="projectImageTitle"><%= Html.Encode(Model.SelectedProject.Name) %></span>
                 <span class="projectImageCaption"><%= Html.Markdown(Model.SelectedProject.Description) %></span>
             </div>
             <%= Html.ImageLink(MVC.Projects.List(Model.NextId), Links.Content.next_button_png, "Next", new { @class = "nextButton" }, null)%>
+            <% } %>
         </div>
     </div>
 </asp:Content>

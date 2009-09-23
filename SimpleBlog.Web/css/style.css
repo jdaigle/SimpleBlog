@@ -1,20 +1,47 @@
-body
-{
+
+html, body, #wrap{
   background: #12697a url(../images/background_strip.png) repeat-x top left;
 	margin: 0px; 
 	padding: 0px;
 	font-family: "Segoe Print", Verdana, sans-serif;
 	font-size: 12px;
+	height: 100%
 }
 
+
+body > #wrap {
+	height: auto; 
+	min-height: 100%;
+	}
+	
 #head
 {
-  background: #fefa84 url(../images/header_empty.png) no-repeat top left;
+  background: #12697a url(../images/header_empty.png) no-repeat top left;
 	width: 1000px;
 	height: 253px;
 	padding: 0px;
 	margin: 0 auto;
 }
+
+#main {padding-bottom: 59px;}  /* must be same height as the footer */
+
+#footer {
+	position: relative;
+	margin-top: -59px; /* negative value of footer height */
+	height: 59px;
+	clear:both;} 
+
+.clearfix:after {content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
 
 #logo
 {
@@ -25,6 +52,7 @@ body
 	top: 70px;
 	left: 290px;
 }
+
 
 #body_wrapper
 {
@@ -39,7 +67,7 @@ body
   background: url(../images/body_top.png) no-repeat top left;
 	float: left;
 	padding: 10px 20px 0px 20px;
-	min-height: 441px;
+	min-height: 500px;
 	display: block;
 	left: 2px;
 }
@@ -52,16 +80,16 @@ body
 	height: 59px;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 #end_body2
 {
-  background: #fefa84 url(../images/footer_background.png) repeat-x top left;
+  background: black url(../images/footer_background.png) repeat-x top left;
 	margin: 0px auto; 
 	padding: 0px;
 	height: 59px;
 }
+
 
 .clearer
 {
@@ -74,18 +102,10 @@ body
   padding: 0px 200px;
 }
 
-#footer
-{
-  margin: 0 auto; 
-	width: 901px;
-	text-align: center;
-	color: #B05128;
-	font-weight: bold;
-}
 
 #footer a
 {
- color: #B05128;
+ color: #12697a;
 }
 
 #right ul a:hover 
@@ -223,5 +243,10 @@ ul, li {
 
 
 h1, p {
-  margin: 10px 0 2px 50px;
+  padding: 10px 0 2px 50px;
 }
+
+ 
+ 
+
+

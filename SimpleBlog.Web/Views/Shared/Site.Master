@@ -30,38 +30,39 @@
     </div>
   </div>
   <![endif]-->
-    <div class="wrapper">
-        <div id="head">
-            <div id="logo">
-            </div>
-            <ul id="buttons1">
-                <li><a id="main" href="http://stephanie-sellers.com/"></a></li>
-                <li><a id="blog" href="http://stephanie-sellers.blogspot.com/"></a></li>
-                <li><a id="about" href="http://stephanie-sellers.com/about.html"></a></li>
-                <li><a id="contact" href="http://stephanie-sellers.com/contact.html"></a></li>
-            </ul>
-        </div>
-        <!-- end head -->
-        <div id="body_wrapper">
-            <div id="body">
-                <asp:ContentPlaceHolder ID="mainContent" runat="server" />
-                <!--content-->
-                <div class="clearer">
+    <div class="wrap">
+        <div id="main" class="clearfix">        
+            <div id="head">
+                <div id="logo">
                 </div>
+                <ul id="buttons1">
+                    <li><a id="main" href="http://stephanie-sellers.com/"></a></li>
+                    <li><a id="blog" href="http://stephanie-sellers.blogspot.com/"></a></li>
+                    <li><a id="about" href="http://stephanie-sellers.com/about.html"></a></li>
+                    <li><a id="contact" href="http://stephanie-sellers.com/contact.html"></a></li>
+                </ul>
             </div>
-            <!-- end body -->
-            <div class="clearer">
-            </div>
-        </div>
-        <!-- end wrapper -->
-        <div class="footer">
-            <div id="end_body2">
-                <div id="end_body">
+            <!-- end head -->
+            <div id="body_wrapper">
+                <div id="body">
+                    <asp:ContentPlaceHolder ID="mainContent" runat="server" />
+                    <!--content-->
+                    <div class="clearer"></div>
                 </div>
+                <!-- end body -->
+                <div class="clearer"></div>
+            </div>
+            <!-- end body_wrapper -->
+        </div>        
+        <!--end main/clearfix-->
+    </div>
+    <!-- end wrap -->
+    <div class="footer">
+        <div id="end_body2">
+            <div id="end_body">
             </div>
         </div>
-        <div>
-        </div>
+    </div>
 </body>
 
 </html>

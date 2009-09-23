@@ -15,6 +15,7 @@ namespace SimpleBlog.Web.Models.Domain.Mapping
                 .GeneratedBy.Identity();
             Map(x => x.Data)
                 .Not.Nullable()
+                .Length(20000)
                 .LazyLoad();
         }
     }

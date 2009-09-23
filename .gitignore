@@ -39,3 +39,6 @@ httpd.parse.errors
 # NUnit
 *.VisualState.xml
 TestResult.xml
+
+# Elmah Results
+SimpleBlog.Web/App_Data/*.xml
