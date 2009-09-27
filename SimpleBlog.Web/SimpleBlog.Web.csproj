@@ -165,7 +165,6 @@
     <Content Include="images\header_empty.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\swoosh.png" />
-    <Content Include="index.html" />
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Projects\List.aspx" />
     <Content Include="Web.config" />

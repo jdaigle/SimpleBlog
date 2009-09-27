@@ -1,13 +1,12 @@
 ﻿using System.Drawing.Imaging;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using SimpleBlog.Web.ActionFilters;
+using SimpleBlog.Web.Models.Domain;
 using SimpleBlog.Web.Models.Domain.Repositories.Interfaces;
 using SimpleBlog.Web.Models.View;
 using SimpleBlog.Web.Mvc;
-using System.Web;
-using SimpleBlog.Web.Models.Domain;
-using System.IO;
 
 namespace SimpleBlog.Web.Controllers
 {
@@ -64,17 +63,7 @@ namespace SimpleBlog.Web.Controllers
             var image = projectRepository.GetImageById(id);
             if (image.Data == null)
                 return new EmptyResult();
-            //return new ImageResult
-            //{
-            //    Image = image.Data,
-            //    ImageFormat = ImageFormat.Png,
-            //};
-            using (var byteStream = new MemoryStream())
-            {
-                image.Data.Save(byteStream, ImageFormat.Png);
-                var bytes = byteStream.ToArray();
-                return File(bytes, "image/png");
-            }
+            return new ImageResult(image.Data, ImageFormat.Png);
         }
 
         [Authorize]

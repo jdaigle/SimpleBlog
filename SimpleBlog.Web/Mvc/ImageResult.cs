@@ -1,41 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Web.Mvc;
 
 namespace SimpleBlog.Web.Mvc
 {
-    public class ImageResult : ActionResult
+    public class ImageResult : FileContentResult
     {
-        public ImageResult()
+        public ImageResult(Image image, ImageFormat imageFormat)
+            :base(ToBytes(image, imageFormat), ToContentType(imageFormat))
         {
+            Image = image;
+            ImageFormat = imageFormat;
         }
-        public Image Image { get; set; }
-        public ImageFormat ImageFormat { get; set; }
 
-        public override void ExecuteResult(ControllerContext context)
+        public Image Image { get; private set; }
+        public ImageFormat ImageFormat { get; private set; }
+
+        public static string ToContentType(ImageFormat imageFormat)
         {
-            if (Image == null)
+            if (imageFormat.Equals(ImageFormat.Bmp)) return "image/bmp";
+            if (imageFormat.Equals(ImageFormat.Gif)) return "image/gif";
+            if (imageFormat.Equals(ImageFormat.Icon)) return "image/vnd.microsoft.icon";
+            if (imageFormat.Equals(ImageFormat.Jpeg)) return "image/jpeg";
+            if (imageFormat.Equals(ImageFormat.Png)) return "image/png";
+            if (imageFormat.Equals(ImageFormat.Tiff)) return "image/tiff";
+            if (imageFormat.Equals(ImageFormat.Wmf)) return "image/wmf";
+            return "image/bmp";
+        }
+
+        public static byte[] ToBytes(Image image, ImageFormat imageFormat)
+        {
+            using (var byteStream = new MemoryStream())
             {
-                throw new ArgumentNullException("Image");
+                image.Save(byteStream, ImageFormat.Png);
+                var bytes = byteStream.ToArray();
+                return bytes;
             }
-            if (ImageFormat == null)
-            {
-                throw new ArgumentNullException("ImageFormat");
-            }
-            
-            context.HttpContext.Response.Clear();
-            if (ImageFormat.Equals(ImageFormat.Bmp)) context.HttpContext.Response.ContentType = "image/bmp";
-            if (ImageFormat.Equals(ImageFormat.Gif)) context.HttpContext.Response.ContentType = "image/gif";
-            if (ImageFormat.Equals(ImageFormat.Icon)) context.HttpContext.Response.ContentType = "image/vnd.microsoft.icon";
-            if (ImageFormat.Equals(ImageFormat.Jpeg)) context.HttpContext.Response.ContentType = "image/jpeg";
-            if (ImageFormat.Equals(ImageFormat.Png)) context.HttpContext.Response.ContentType = "image/png";
-            if (ImageFormat.Equals(ImageFormat.Tiff)) context.HttpContext.Response.ContentType = "image/tiff";
-            if (ImageFormat.Equals(ImageFormat.Wmf)) context.HttpContext.Response.ContentType = "image/wmf";
-            Image.Save(context.HttpContext.Response.OutputStream, ImageFormat);
         }
     }
 }

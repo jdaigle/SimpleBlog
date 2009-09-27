@@ -1,6 +1,6 @@
 
-html, body, #wrap{
-  background: #12697a url(../images/background_strip.png) repeat-x top left;
+body{
+  background: black;
 	margin: 0px; 
 	padding: 0px;
 	font-family: "Segoe Print", Verdana, sans-serif;
@@ -8,11 +8,12 @@ html, body, #wrap{
 	height: 100%
 }
 
-
-body > #wrap {
-	height: auto; 
-	min-height: 100%;
-	}
+#wrap{
+	background: #12697a url(../images/background_strip.png) repeat-x top left;
+	margin: 0px; 
+	padding: 0px;
+	height: 100%
+}
 	
 #head
 {
@@ -23,7 +24,6 @@ body > #wrap {
 	margin: 0 auto;
 }
 
-#main {padding-bottom: 59px;}  /* must be same height as the footer */
 
 #footer {
 	position: relative;
@@ -31,22 +31,12 @@ body > #wrap {
 	height: 59px;
 	clear:both;} 
 
-.clearfix:after {content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;}
-.clearfix {display: inline-block;}
-/* Hides from IE-mac \*/
-* html .clearfix { height: 1%;}
-.clearfix {display: block;}
-/* End hide from IE-mac */
 
 
 #logo
 {
   background: url(../images/logo.png) no-repeat top left;
-  width: 426px;
+  width: 428px;
   height: 96px;
 	position: relative;
 	top: 70px;
@@ -59,6 +49,7 @@ body > #wrap {
   background: url(../images/body_cont.png) repeat-y top left;
 	margin: 0px auto;
 	width: 1000px;
+	min-height: 50px;
 	display: block;
 }
 
@@ -71,6 +62,7 @@ body > #wrap {
 	display: block;
 	left: 2px;
 }
+
 
 #end_body
 {

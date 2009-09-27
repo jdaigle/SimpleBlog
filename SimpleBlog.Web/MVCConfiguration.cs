@@ -73,13 +73,9 @@ namespace SimpleBlog.Web
             SQLiteUtil.InitializeData(SQLiteTestData, ObjectFactory.GetInstance<ISession>());
             ObjectFactory.GetInstance<ISession>().Clear();
 #endif
-
-#if DEBUG
-            //new SchemaExport(cfg).SetOutputFile("SimpleBlogSchema.sql").Create(false, false);
-#endif
         }
 
-
+#if SQLITE
         private static void SQLiteTestData()
         {
             var session = ObjectFactory.GetInstance<ISession>();
@@ -147,5 +143,6 @@ namespace SimpleBlog.Web
                 project = (Project)session.SaveOrUpdateCopy(project);
             }
         }
+#endif
     }
 }
